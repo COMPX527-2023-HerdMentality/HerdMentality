@@ -1,9 +1,10 @@
 <template>
     <div class="Myapp">
-      <h1 class="title">GAME OVER</h1>
-      <h2 class="score">Score: </h2>
-      <h2 class="highScore">High Score: {{ score }}</h2>
+      <h1 class="gameOver">GAME OVER</h1>
+      <h2 class="score">Score: {{ score }}</h2>
+      <h2 class="highScore">High Score: {{ highScore }}</h2>
       <input id="playAgain" type="button" value="Play Again" @click="playAgainClick()"> 
+      <input id="leaderboards" type="button" value="Leaderboards" @click="leaderboardsClick()"> 
       <div class="image-container">
         <div class="image">
           <!-- Your first image goes here -->
@@ -18,12 +19,16 @@
 export default {
     data() {
         return {
-            score: 0
+            score: 0,
+            highScore: 0
         };
     },
     methods: {
         playAgainClick() {
             this.score++;
+        },
+        leaderboardsClick() {
+            this.highScore++;
         }
     }
 };
@@ -31,18 +36,26 @@ export default {
 </script>
 
   <style>
+
+@font-face {
+    font-family: sheepFont;
+    src: url(../assets/fonts/sheep.ttf);
+}
+
   .Myapp {
     width: 100%;
   }
   
   /* Center the header text vertically and horizontally */
-  .title {
+  .gameOver {
     position: absolute; /* Position the header absolutely within the .Myapp container */
-    top: 10%; /* Center vertically */
+    top: 20%; /* Center vertically */
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /*Center the header perfectly*/
     z-index: 1; /* Ensure the header appears in front of the images */
-    color: white;
+    font-family: sheepFont;
+    font-size: 100pt;
+    color: #A6CBCE;
   }
 
   .score {
@@ -51,25 +64,56 @@ export default {
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /*Center the header perfectly*/
     z-index: 1; /* Ensure the header appears in front of the images */
-    color: white;
+    font-family: sheepFont;
+    font-size: 80pt;
+    color: #A6CBCE;
   }
 
   .highScore {
     position: absolute; /* Position the header absolutely within the .Myapp container */
-    top: 45%; /* Center vertically */
+    top: 50%; /* Center vertically */
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /*Center the header perfectly*/
     z-index: 1; /* Ensure the header appears in front of the images */
-    color: white;
+    font-family: sheepFont;
+    font-size: 50pt;
+    color: #CC998D;
   }
 
   #playAgain {
     position: absolute; /* Position the header absolutely within the .Myapp container */
-    top: 55%; /* Center vertically */
+    top: 65%; /* Center vertically */
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /*Center the header perfectly*/
     z-index: 1; /* Ensure the header appears in front of the images */
+    font-family: sheepFont;
+    font-size: 70pt;
+    background-color: transparent;
+    border: none;
+    color: #CC998D;
+  }
+
+  #playAgain:hover {
+    font-size: 80pt;
+    color: #DC816C
+  }
+
+  #leaderboards {
+    position: absolute; /* Position the header absolutely within the .Myapp container */
+    top: 82%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /*Center the header perfectly*/
+    z-index: 1; /* Ensure the header appears in front of the images */
+    font-family: sheepFont;
     font-size: 50pt;
+    background-color: transparent;
+    border: none;
+    color: #CC998D;
+  }
+
+  #leaderboards:hover {
+    font-size: 60pt;
+    color: #DC816C
   }
   
   /* Create a flex container to hold the images side by side */
@@ -79,7 +123,6 @@ export default {
     height: 100vh;
     width: 200%;
     background-color: rgba(0,0,0,1);
-  
   }
   
   /* Style for each image */
