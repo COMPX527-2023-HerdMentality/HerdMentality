@@ -2,10 +2,11 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import QuestionView from './components/Question.vue'
+import HomeView from './components/Home.vue'
 </script>
 
 <template>
-    <QuestionView/>
+    <HomeView/>
 </template>
 
 <style scoped>
