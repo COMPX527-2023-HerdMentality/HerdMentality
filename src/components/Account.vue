@@ -1,12 +1,6 @@
-
 <template>
-    <!--https://beginnersoftwaredeveloper.com/how-do-i-navigate-between-views-on-my-vue-router/-->
     <div class="Myapp">
-        <h1 class="header">Herd Mentality</h1>
-        
-        <input id="play" type="button" value="Play">
-        <input id="leaderboard" type="button" value="Leaderboard">
-        <input id="account" type="button" value="Account">
+        <h1 class="header">Account</h1>
 
         <div class="image-container">
             <div class="image">
@@ -35,45 +29,6 @@ z-index: 1; /* Ensure the header appears in front of the images */
 font-family: sheepFont;
 font-size: 130pt;
 color: #A6CBCE;
-}
-
-#play, #leaderboard, #account{
-    text-align: center;
-position: absolute; /* Position the header absolutely within the .Myapp container */
-top: 40%; /* Center vertically */
-left: 50%; /* Center horizontally */
-transform: translate(-50%, -50%); /*Center the header perfectly*/
-font-family: sheepFont;
-font-size: 100pt;
-z-index: 1;
-background: transparent;
-border: none;
-color: #cc998d;
-}
-
-#leaderboard{
-    top:60%;
-    font-size: 80pt;
-}
-
-#account{
-    top:80%;
-    font-size: 60pt;
-}
-
-#play:hover{
-    font-size: 120pt;
-    color: #DC816C;
-}
-
-#account:hover{
-    font-size: 80pt;
-    color: #DC816C;
-}
-
-#leaderboard:hover{
-    font-size: 100pt;
-    color: #DC816C;
 }
 
 /* Create a flex container to hold the images side by side */
