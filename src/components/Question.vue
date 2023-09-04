@@ -5,12 +5,12 @@
       <div class="image" @click="handleImageClick(1)">
         <!-- TODO: Static local images need to be updated -->
         <h2 class="imageLabel">Image 1</h2>
-        <h2 class="scoreLabel">Score: {{ score }}</h2>
         <img :src="image1Src" alt="Image 1">
         
       </div>
       <div class="image" @click="handleImageClick(2)">
         <h2 class="imageLabel">Image 2</h2>
+        <h2 class="scoreLabel">Score: {{ score }}</h2>
         <img :src="image2Src" alt="Image 2" >
         
       </div>
@@ -50,6 +50,11 @@ export default {
 </script>
 
 <style>
+
+@font-face{
+  font-family: sheepFont;
+  src: url(../assets/fonts/sheep.ttf)
+}
 .Myapp {
   width: 100%;
 }
@@ -57,12 +62,14 @@ export default {
 /* Center the header text vertically and horizontally */
 .header {
   text-align: center;
-  color: white;
+  color: #A6cbce;
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 10%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
+  font-family: sheepFont;
   z-index: 1; /* Ensure the header appears in front of the images */
+  font-size: 30pt;
 }
 
 /* Create a flex container to hold the images side by side */
@@ -96,23 +103,27 @@ export default {
 }
 
 .imageLabel{
-  color: white;
+  color: #A6cbce;
   z-index: 1; /* Ensure the header appears in front of the images */
   position: absolute; /* Position the header absolutely within the .Myapp container */
   text-align: center;
   top: 60%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
+  font-size: 26pt;
+  font-family: sheepFont;
 }
 
 .scoreLabel{
-  color: white;
+  color: #CC998D;
   z-index: 1; /* Ensure the header appears in front of the images */
   position: absolute; /* Position the header absolutely within the .Myapp container */
   text-align: center;
   top: 97%; /* Center vertically */
-  left: 6%; /* Center horizontally */
+  left: 87%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
+  font-family: sheepFont;
+  font-size: 26pt;
 }
 
 </style>
