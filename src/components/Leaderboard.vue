@@ -15,7 +15,7 @@
       </div>
     </div>
   </div>
-</template>
+</template>More navigation added and delete account button made.
 
 <script>
 
@@ -35,6 +35,7 @@ export default {
 };
 
 </script>
+
 
 <style>
 

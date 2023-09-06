@@ -4,6 +4,8 @@ import Question from '../components/Question.vue'
 import GameOver from '../components/GameOver.vue'
 import AboutView from '../views/AboutView.vue'
 import Home from '../components/Home.vue'
+import Leaderboard from '../components/Leaderboard.vue'
+import Question from '../components/Question.vue'
 import Account from '../components/Account.vue'
 
 const router = createRouter({
@@ -20,9 +22,14 @@ const router = createRouter({
       component: Account
     },
     {
-      path: '/account',
-      name: 'account',
-      component: Account
+      path: '/play',
+      name: 'question',
+      component: Question
+    },
+    {
+      path: '/leaderboard',
+      name: 'leaderboard',
+      component: Leaderboard
     },
     {
       path: '/about',
