@@ -3,6 +3,8 @@ import Home from '../views/HomeView.vue'
 import Question from '../components/Question.vue'
 import GameOver from '../components/GameOver.vue'
 import AboutView from '../views/AboutView.vue'
+import Home from '../components/Home.vue'
+import Account from '../components/Account.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,14 +15,14 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/play',
-      name: 'question',
-      component: Question
+      path: '/account',
+      name: 'account',
+      component: Account
     },
     {
-      path: '/gameover',
-      name: 'gameOver',
-      component: GameOver
+      path: '/account',
+      name: 'account',
+      component: Account
     },
     {
       path: '/about',
