@@ -2,11 +2,12 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import QuestionView from './components/Question.vue'
-import GameOverView from './components/GameOver.vue'
+import HomeView from './components/Home.vue'
+import AccountView from './components/Account.vue'
 </script>
 
 <template>
-    <GameOverView/>
+    <router-view :key="$route.path"></router-view>
 </template>
 
 <style scoped>
