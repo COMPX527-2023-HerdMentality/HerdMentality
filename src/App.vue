@@ -2,10 +2,11 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import QuestionView from './components/Question.vue'
+import GameOverView from './components/GameOver.vue'
 </script>
 
 <template>
-    <QuestionView/>
+    <GameOverView/>
 </template>
 
 <style scoped>
