@@ -1,6 +1,6 @@
 <template>
   <div class="Myapp">
-    <h1 class="Leaderboard">Leaderboard</h1>
+    <h1 class="leaderboard">Leaderboard</h1>
     <h2 class="score1">User: {{ score }}</h2>
     <h2 class="score2">User: {{ score }}</h2>
     <h2 class="score3">User: {{ score }}</h2>
@@ -49,7 +49,7 @@ export default {
 }
 
 /* Center the header text vertically and horizontally */
-.gameOver {
+.leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 20%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -60,7 +60,7 @@ export default {
   color: #A6CBCE;
 }
 
-.score {
+.score1 {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 40%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -71,7 +71,7 @@ export default {
   color: #A6CBCE;
 }
 
-.highScore {
+.score2 {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -82,7 +82,40 @@ export default {
   color: #CC998D;
 }
 
-#playAgain {
+.score3 {
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  z-index: 1; /* Ensure the header appears in front of the images */
+  font-family: sheepFont;
+  font-size: 50pt;
+  color: #CC998D;
+}
+
+.score4 {
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  z-index: 1; /* Ensure the header appears in front of the images */
+  font-family: sheepFont;
+  font-size: 50pt;
+  color: #CC998D;
+}
+
+.score5 {
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  z-index: 1; /* Ensure the header appears in front of the images */
+  font-family: sheepFont;
+  font-size: 50pt;
+  color: #CC998D;
+}
+
+#play {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 65%; /* Center vertically */
   left: 50%; /* Center horizontally */
