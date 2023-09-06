@@ -4,7 +4,7 @@
       <h2 class="score">Score: {{ score }}</h2>
       <h2 class="highScore">High Score: {{ highScore }}</h2>
       <input id="playAgain" type="button" value="Play Again" @click="playAgainClick()"> 
-      <input id="leaderboards" type="button" value="Leaderboards" @click="leaderboardsClick()"> 
+      <input id="leaderboard" type="button" value="Leaderboard" @click="leaderboardClick()"> 
       <div class="image-container">
         <div class="image">
           <!-- Your first image goes here -->
@@ -27,7 +27,7 @@ export default {
         playAgainClick() {
             this.score++;
         },
-        leaderboardsClick() {
+        leaderboardClick() {
             this.highScore++;
         }
     }
@@ -98,7 +98,7 @@ export default {
     color: #DC816C
   }
 
-  #leaderboards {
+  #leaderboard {
     position: absolute; /* Position the header absolutely within the .Myapp container */
     top: 82%; /* Center vertically */
     left: 50%; /* Center horizontally */
@@ -111,7 +111,7 @@ export default {
     color: #CC998D;
   }
 
-  #leaderboards:hover {
+  #leaderboard:hover {
     font-size: 60pt;
     color: #DC816C
   }
