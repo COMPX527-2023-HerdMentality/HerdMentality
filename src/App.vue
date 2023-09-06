@@ -6,7 +6,9 @@ import GameOverView from './components/GameOver.vue'
 </script>
 
 <template>
-    <GameOverView/>
+    <!-- <GameOverView/> -->
+    <QuestionView/>
+    <!-- <router-view :key="$route.path"></router-view> -->
 </template>
 
 <style scoped>

@@ -3,8 +3,12 @@
       <h1 class="gameOver">GAME OVER</h1>
       <h2 class="score">Score: {{ score }}</h2>
       <h2 class="highScore">High Score: {{ highScore }}</h2>
-      <input id="playAgain" type="button" value="Play Again" @click="playAgainClick()"> 
-      <input id="leaderboard" type="button" value="Leaderboard" @click="leaderboardClick()"> 
+      <a href="/play">
+        <input id="playAgain" type="button" value="Play Again" @click="playAgainClick()"> 
+      </a>
+      <a href="/play">
+        <input id="leaderboard" type="button" value="Leaderboard" @click="leaderboardClick()"> 
+      </a>
       <div class="image-container">
         <div class="image">
           <!-- Your first image goes here -->
