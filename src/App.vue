@@ -7,7 +7,7 @@ import AccountView from './components/Account.vue'
 </script>
 
 <template>
-    <HomeView/>
+    <router-view :key="$route.path"></router-view>
 </template>
 
 <style scoped>

@@ -6,16 +6,19 @@
         
         <input id="play" type="button" value="Play">
         <input id="leaderboard" type="button" value="Leaderboard">
-        <input id="account" type="button" value="Account">
+        <!--<input id="account" type="button" value="Account" >-->
+
+        <router-link to="/account"><input id="account" type="button" value="Account"></router-link>
 
         <div class="image-container">
             <div class="image">
                 <!-- Your first image goes here -->
-                <img src="../assets/images/herd.jpg" alt="Image 1">
+                <img src="../assets/images/herd.jpg" alt="Flock of Sheep">
             </div>
         </div>
     </div>
 </template>
+
 
 /* Center the header text vertically and horizontally */
 <style>
