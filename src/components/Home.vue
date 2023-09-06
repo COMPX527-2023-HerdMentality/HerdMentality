@@ -4,11 +4,12 @@
     <div class="Myapp">
         <h1 class="header">Herd Mentality</h1>
         
-        <input id="play" type="button" value="Play">
-        <input id="leaderboard" type="button" value="Leaderboard">
-        <!--<input id="account" type="button" value="Account" >-->
+        
+
 
         <router-link to="/account"><input id="account" type="button" value="Account"></router-link>
+        <router-link to="/play"><input id="play" type="button" value="Play"></router-link>
+        <router-link to="/leaderboard"><input id="leaderboard" type="button" value="Leaderboard"></router-link>
 
         <div class="image-container">
             <div class="image">

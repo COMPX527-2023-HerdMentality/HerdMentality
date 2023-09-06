@@ -2,6 +2,8 @@
     <div class="Myapp">
         <h1 class="header">Account</h1>
 
+        <input id="delete" type="button" value="Delete Account">
+
         <div class="image-container">
             <div class="image">
                 <!-- Your first image goes here -->
@@ -29,6 +31,25 @@ z-index: 1; /* Ensure the header appears in front of the images */
 font-family: sheepFont;
 font-size: 130pt;
 color: #A6CBCE;
+}
+
+#delete{
+    text-align: center;
+position: absolute; /* Position the header absolutely within the .Myapp container */
+top: 70%; /* Center vertically */
+left: 50%; /* Center horizontally */
+transform: translate(-50%, -50%); /*Center the header perfectly*/
+font-family: sheepFont;
+font-size: 60pt;
+z-index: 1;
+background: transparent;
+border: none;
+color: #cc998d;
+}
+
+#delete:hover{
+    font-size: 80pt;
+    color: #DC816C;
 }
 
 /* Create a flex container to hold the images side by side */
