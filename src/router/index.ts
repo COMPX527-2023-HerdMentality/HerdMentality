@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Home from '../views/HomeView.vue'
+import Question from '../components/Question.vue'
+import GameOver from '../components/GameOver.vue'
 import AboutView from '../views/AboutView.vue'
 import Home from '../components/Home.vue'
 import Leaderboard from '../components/Leaderboard.vue'
