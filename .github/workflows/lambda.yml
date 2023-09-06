@@ -25,10 +25,12 @@ jobs:
           role-to-assume: arn:aws:iam::760360511766:role/GitHubAction-DeployLambdaCode #change to reflect your IAM role’s ARN
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ env.AWS_REGION }}
-      - name: Update the function code
+      - name: Update the questions function code
         run: |
           zip -j deploy.zip ./lambdas/questions/*
           aws lambda update-function-code --function-name=questions --zip-file=fileb://deploy.zip
+      - name: Update the leaderboard function code    
+        run: |
           zip -j deploy.zip ./lambdas/leaderboard/*
           aws lambda update-function-code --function-name=leaderboard --zip-file=fileb://deploy.zip
       
