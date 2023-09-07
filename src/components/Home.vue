@@ -3,9 +3,6 @@
     <!--https://beginnersoftwaredeveloper.com/how-do-i-navigate-between-views-on-my-vue-router/-->
     <div class="Myapp">
         <h1 class="header">Herd Mentality</h1>
-        
-        
-
 
         <router-link to="/account"><input id="account" type="button" value="Account"></router-link>
         <router-link to="/play"><input id="play" type="button" value="Play"></router-link>
