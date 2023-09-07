@@ -30,6 +30,11 @@ const router = createRouter({
       component: Leaderboard
     },
     {
+      path: '/gameover',
+      name: 'gameover',
+      component: GameOver
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

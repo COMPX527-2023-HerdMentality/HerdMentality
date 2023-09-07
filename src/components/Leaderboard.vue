@@ -1,13 +1,14 @@
 <template>
   <div class="Myapp">
-    <h1 class="Leaderboard">Leaderboard</h1>
+    <h1 class="leaderboard">Leaderboard</h1>
     <h2 class="score1">User: {{ score }}</h2>
     <h2 class="score2">User: {{ score }}</h2>
     <h2 class="score3">User: {{ score }}</h2>
     <h2 class="score4">User: {{ score }}</h2>
     <h2 class="score5">User: {{ score }}</h2>
     <h2 class="highScore">Your Highscore: {{ highScore }}</h2>
-    <input id="play" type="button" value="Play" @click="playClick()"> 
+    <router-link to="/play"><input id="play_leaderboard" type="button" value="Play"></router-link>
+    <router-link to="/"><input id="home_leaderboard" type="button" value="Home"></router-link>
     <div class="image-container">
       <div class="image">
         <!-- Your first image goes here -->
@@ -22,13 +23,11 @@
 export default {
   data() {
       return {
-          x: 0,
           highScore: 0
       };
   },
   methods: {
       playClick() {
-          this.x++;
           this.highScore++;
       },
   }
@@ -49,31 +48,75 @@ export default {
 }
 
 /* Center the header text vertically and horizontally */
-.gameOver {
+.leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
-  top: 20%; /* Center vertically */
+  top: 13%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
   z-index: 1; /* Ensure the header appears in front of the images */
   font-family: sheepFont;
-  font-size: 100pt;
+  font-size: 110pt;
+  color: #CC998D;
+}
+
+.score1 {
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  top: 30%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  z-index: 1; /* Ensure the header appears in front of the images */
+  font-family: sheepFont;
+  font-size: 90pt;
   color: #A6CBCE;
 }
 
-.score {
+.score2 {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 40%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
   z-index: 1; /* Ensure the header appears in front of the images */
   font-family: sheepFont;
-  font-size: 80pt;
+  font-size: 75pt;
+  color: #A6CBCE;
+}
+
+.score3 {
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  top: 49%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  z-index: 1; /* Ensure the header appears in front of the images */
+  font-family: sheepFont;
+  font-size: 60pt;
+  color: #A6CBCE;
+}
+
+.score4 {
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  top: 57%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  z-index: 1; /* Ensure the header appears in front of the images */
+  font-family: sheepFont;
+  font-size: 50pt;
+  color: #A6CBCE;
+}
+
+.score5 {
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  top: 64%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  z-index: 1; /* Ensure the header appears in front of the images */
+  font-family: sheepFont;
+  font-size: 50pt;
   color: #A6CBCE;
 }
 
 .highScore {
   position: absolute; /* Position the header absolutely within the .Myapp container */
-  top: 50%; /* Center vertically */
+  top: 76%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
   z-index: 1; /* Ensure the header appears in front of the images */
@@ -82,10 +125,10 @@ export default {
   color: #CC998D;
 }
 
-#playAgain {
+#play_leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
-  top: 65%; /* Center vertically */
-  left: 50%; /* Center horizontally */
+  top: 90%; /* Center vertically */
+  left: 30%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
   z-index: 1; /* Ensure the header appears in front of the images */
   font-family: sheepFont;
@@ -95,7 +138,25 @@ export default {
   color: #CC998D;
 }
 
-#playAgain:hover {
+#play_leaderboard:hover {
+  font-size: 80pt;
+  color: #DC816C
+}
+
+#home_leaderboard {
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  top: 90%; /* Center vertically */
+  left: 70%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  z-index: 1; /* Ensure the header appears in front of the images */
+  font-family: sheepFont;
+  font-size: 70pt;
+  background-color: transparent;
+  border: none;
+  color: #CC998D;
+}
+
+#home_leaderboard:hover {
   font-size: 80pt;
   color: #DC816C
 }
