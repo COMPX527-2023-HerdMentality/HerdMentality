@@ -1,14 +1,11 @@
 <template>
     <div class="Myapp">
-      <h1 class="gameOver">GAME OVER</h1>
-      <h2 class="score">Score: {{ score }}</h2>
-      <h2 class="highScore">High Score: {{ highScore }}</h2>
-      <a href="/play">
-        <input id="playAgain" type="button" value="Play Again" @click="playAgainClick()"> 
-      </a>
-      <a href="/play">
-        <input id="leaderboard" type="button" value="Leaderboard" @click="leaderboardClick()"> 
-      </a>
+      <h1 class="header_gameover">GAME OVER</h1>
+      <h2 class="score_gameover">Score: {{ score }}</h2>
+      <h2 class="highScore_gameover">High Score: {{ highScore }}</h2>
+      <router-link to="/play"><input id="play_gameover" type="button" value="Play Again"></router-link>
+      <router-link to="/leaderboard"><input id="leaderboard_gameover" type="button" value="Leaderboard"></router-link>
+      <router-link to="/"><input id="home_gameover" type="button" value="Home"></router-link>
       <div class="image-container">
         <div class="image">
           <!-- Your first image goes here -->
@@ -28,11 +25,8 @@ export default {
         };
     },
     methods: {
-        playAgainClick() {
+        play_gameoverClick() {
             this.score++;
-        },
-        leaderboardClick() {
-            this.highScore++;
         }
     }
 };
@@ -51,7 +45,7 @@ export default {
   }
   
   /* Center the header text vertically and horizontally */
-  .gameOver {
+  .header_gameover {
     position: absolute; /* Position the header absolutely within the .Myapp container */
     top: 20%; /* Center vertically */
     left: 50%; /* Center horizontally */
@@ -62,7 +56,7 @@ export default {
     color: #A6CBCE;
   }
 
-  .score {
+  .score_gameover {
     position: absolute; /* Position the header absolutely within the .Myapp container */
     top: 40%; /* Center vertically */
     left: 50%; /* Center horizontally */
@@ -73,7 +67,7 @@ export default {
     color: #A6CBCE;
   }
 
-  .highScore {
+  .highScore_gameover {
     position: absolute; /* Position the header absolutely within the .Myapp container */
     top: 50%; /* Center vertically */
     left: 50%; /* Center horizontally */
@@ -84,7 +78,7 @@ export default {
     color: #CC998D;
   }
 
-  #playAgain {
+  #play_gameover {
     position: absolute; /* Position the header absolutely within the .Myapp container */
     top: 65%; /* Center vertically */
     left: 50%; /* Center horizontally */
@@ -97,14 +91,14 @@ export default {
     color: #CC998D;
   }
 
-  #playAgain:hover {
+  #play_gameover:hover {
     font-size: 80pt;
     color: #DC816C
   }
 
-  #leaderboard {
+  #leaderboard_gameover {
     position: absolute; /* Position the header absolutely within the .Myapp container */
-    top: 82%; /* Center vertically */
+    top: 75%; /* Center vertically */
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /*Center the header perfectly*/
     z-index: 1; /* Ensure the header appears in front of the images */
@@ -115,7 +109,25 @@ export default {
     color: #CC998D;
   }
 
-  #leaderboard:hover {
+  #leaderboard_gameover:hover {
+    font-size: 60pt;
+    color: #DC816C
+  }
+
+  #home_gameover {
+    position: absolute; /* Position the header absolutely within the .Myapp container */
+    top: 85%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /*Center the header perfectly*/
+    z-index: 1; /* Ensure the header appears in front of the images */
+    font-family: sheepFont;
+    font-size: 50pt;
+    background-color: transparent;
+    border: none;
+    color: #CC998D;
+  }
+
+  #home_gameover:hover {
     font-size: 60pt;
     color: #DC816C
   }
