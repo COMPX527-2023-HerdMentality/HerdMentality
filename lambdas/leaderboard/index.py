@@ -14,6 +14,7 @@ def handler(event, context):
     if event['httpMethod'] == 'GET':
         # Use the query operation to retrieve the top 10 scores in descending order
         response = leaderboard_table.query(
+            IndexName='UserID', 
             KeyConditionExpression=Key('Score').gte(0),
             ScanIndexForward=False,  # Sort in descending order
             Limit=10  # Limit the result to the top 10 scores
