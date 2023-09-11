@@ -63,7 +63,7 @@ def handler(event, context):
         # Add the new entry to the leaderboard
         leaderboard_table.put_item(
             Item={
-                'UserId': name, 
+                'UserID': name, 
                 'Score': score
             }
         )
