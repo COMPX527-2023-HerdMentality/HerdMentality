@@ -20,9 +20,6 @@ def handler(event, context):
         #     Limit=10  # Limit the result to the top 10 scores
         # )
         
-        # # Create a list to store the leaderboard data
-        # leaderboard = []
-        
         # # Append each user's data to the leaderboard list
         # for item in response['Items']:
         #     user_id = item['UserId']
@@ -35,9 +32,13 @@ def handler(event, context):
         # Get all items and sort them by score in descending order
         items = response['Items']
         items.sort(key=lambda x: x['Score'], reverse=True)
-        
-        # Create a list to store the leaderboard data
-        leaderboard = items[:10]  # Get the top 10 scores
+
+        # Convert Decimal values to float for JSON serialization
+        leaderboard = []
+        for item in items[:10]:  # Get the top 10 scores
+            user_id = item['UserId']
+            score = float(item['Score'])  # Convert Decimal to float
+            leaderboard.append({'UserId': user_id, 'Score': score})
  
         # Return the leaderboard as a JSON response
         return {
