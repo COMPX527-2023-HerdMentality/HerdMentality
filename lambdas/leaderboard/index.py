@@ -36,7 +36,7 @@ def handler(event, context):
         # Convert Decimal values to float for JSON serialization
         leaderboard = []
         for item in items[:10]:  # Get the top 10 scores
-            user_id = item['UserId']
+            user_id = item['UserID']
             score = float(item['Score'])  # Convert Decimal to float
             leaderboard.append({'UserId': user_id, 'Score': score})
  
