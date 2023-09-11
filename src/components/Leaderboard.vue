@@ -18,12 +18,13 @@
   </div>
 </template>More navigation added and delete account button made.
 
-<script>
+<script lang="ts">
 
 export default {
   data() {
       return {
-          highScore: 0
+          highScore: 0,
+          score: 0
       };
   },
   methods: {
@@ -51,6 +52,7 @@ export default {
 .leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 13%; /* Center vertically */
+
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
   z-index: 1; /* Ensure the header appears in front of the images */
