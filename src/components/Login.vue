@@ -5,7 +5,7 @@
 
         <!-- <router-link to="/account"><input id="google_login" @click="googleRoute()" type="button" value="Sign in with Google"></router-link> -->
         <a href="https://herdmentality.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=4evgbmouciqv3vodnoafsp4rag&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fd26uos70b4pzd2.cloudfront.net">
-            <input id="google_login" @click="googleRoute()" type="button" value="Sign in with Google">
+            <input id="google_login" type="button" value="Sign in with Google">
         </a>
         <div class="image-container_login">
             <div class="image_login">
@@ -17,20 +17,22 @@
 </template>
 
 
-<script>
+<script lang="ts">
+    import {CognitoUserPool} from "amazon-cognito-identity-js"
+    
+    
 
-export default {
-  data() {
-    return {
-      google_path: "https://herdmentality.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=4evgbmouciqv3vodnoafsp4rag&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fd26uos70b4pzd2.cloudfront.net",
-    };
-  },
-  methods: {
-    googleRoute() {
-        window.location.href = google_path
-    },
-  },
-};
+    try {
+        var poolData = {
+        UserPoolId: 'us-east-1_mjewQwwHp',
+        ClientId: '4evgbmouciqv3vodnoafsp4rag',
+        };
+        var x = new CognitoUserPool(poolData)
+        x.getCurrentUser()
+    }
+    catch(err) {
+        console.log(err);
+    }
 </script>
 
 <style>
