@@ -1,16 +1,16 @@
 <template>
-  <div class="Myapp">
-    <h1 class="leaderboard">Leaderboard</h1>
-    <h2 class="score1">User: {{ score }}</h2>
-    <h2 class="score2">User: {{ score }}</h2>
-    <h2 class="score3">User: {{ score }}</h2>
-    <h2 class="score4">User: {{ score }}</h2>
-    <h2 class="score5">User: {{ score }}</h2>
-    <h2 class="highScore">Your Highscore: {{ highScore }}</h2>
+  <div class="Myapp_leaderboard">
+    <h1 class="header_leaderboard">Leaderboard</h1>
+    <h2 class="score1_leaderboard">User: {{ score }}</h2>
+    <h2 class="score2_leaderboard">User: {{ score }}</h2>
+    <h2 class="score3_leaderboard">User: {{ score }}</h2>
+    <h2 class="score4_leaderboard">User: {{ score }}</h2>
+    <h2 class="score5_leaderboard">User: {{ score }}</h2>
+    <h2 class="highScore_leaderboard">Your Highscore: {{ highScore }}</h2>
     <router-link to="/play"><input id="play_leaderboard" type="button" value="Play"></router-link>
     <router-link to="/"><input id="home_leaderboard" type="button" value="Home"></router-link>
-    <div class="image-container">
-      <div class="image">
+    <div class="image-container_leaderboard">
+      <div class="image_leaderboard">
         <!-- Your first image goes here -->
         <img src="../assets/images/gameOverImage.avif" alt="Image 1">
       </div>
@@ -44,12 +44,12 @@ export default {
   src: url(../assets/fonts/sheep.ttf);
 }
 
-.Myapp {
+.Myapp_leaderboard {
   width: 100%;
 }
 
 /* Center the header text vertically and horizontally */
-.leaderboard {
+.header_leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 13%; /* Center vertically */
 
@@ -61,7 +61,7 @@ export default {
   color: #CC998D;
 }
 
-.score1 {
+.score1_leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 30%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -72,7 +72,7 @@ export default {
   color: #A6CBCE;
 }
 
-.score2 {
+.score2_leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 40%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -83,7 +83,7 @@ export default {
   color: #A6CBCE;
 }
 
-.score3 {
+.score3_leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 49%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -94,7 +94,7 @@ export default {
   color: #A6CBCE;
 }
 
-.score4 {
+.score4_leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 57%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -105,7 +105,7 @@ export default {
   color: #A6CBCE;
 }
 
-.score5 {
+.score5_leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 64%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -116,7 +116,7 @@ export default {
   color: #A6CBCE;
 }
 
-.highScore {
+.highScore_leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 76%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -182,7 +182,7 @@ export default {
 }
 
 /* Create a flex container to hold the images side by side */
-.image-container {
+.image-container_leaderboard {
   display: flex;
   justify-content: space-between;
   height: 100vh;
@@ -191,7 +191,7 @@ export default {
 }
 
 /* Style for each image */
-.image {
+.image_leaderboard {
   flex: 1; /*Each image takes up an equal part of the container*/
   text-align: center; /* Center the content horizontally */;
   /* background-size: cover; Scale the background image to cover the entire div */
@@ -200,7 +200,7 @@ export default {
   position: relative;
 }
 
-.image img{
+.image_leaderboard img{
   height: auto;
   width: 100%;
   object-fit: cover;
