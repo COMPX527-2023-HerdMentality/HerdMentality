@@ -5,6 +5,7 @@ import Home from '../components/Home.vue'
 import Leaderboard from '../components/Leaderboard.vue'
 import Question from '../components/Question.vue'
 import Account from '../components/Account.vue'
+import Login from '../components/Login.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/gameover',
       name: 'gameover',
       component: GameOver
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/about',
