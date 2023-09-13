@@ -1,11 +1,12 @@
 <template>
-    <div class="Myapp">
-        <h1 class="header">Account</h1>
+    <div class="Myapp_account">
+        <h1 class="header_account">Account</h1>
 
-        <input id="delete" type="button" value="Delete Account">
+        <input id="delete_account" type="button" value="Delete Account">
+        <router-link to="/"><input id="back_account" type="button" value="Back"></router-link>
 
-        <div class="image-container">
-            <div class="image">
+        <div class="image-container_account">
+            <div class="image_account">
                 <!-- Your first image goes here -->
                 <img src="../assets/images/herd.jpg" alt="Image 1">
             </div>
@@ -21,7 +22,7 @@
     src: url(../assets/fonts/sheep.ttf);
 }
 
-.header {
+.header_account {
 text-align: center;
 position: absolute; /* Position the header absolutely within the .Myapp container */
 top: 20%; /* Center vertically */
@@ -33,10 +34,10 @@ font-size: 130pt;
 color: #A6CBCE;
 }
 
-#delete{
+#delete_account {
     text-align: center;
 position: absolute; /* Position the header absolutely within the .Myapp container */
-top: 70%; /* Center vertically */
+top: 65%; /* Center vertically */
 left: 50%; /* Center horizontally */
 transform: translate(-50%, -50%); /*Center the header perfectly*/
 font-family: sheepFont;
@@ -47,14 +48,33 @@ border: none;
 color: #cc998d;
 }
 
-#delete:hover{
+#delete_account:hover {
+    font-size: 80pt;
+    color: #DC816C;
+}
+
+#back_account {
+    text-align: center;
+position: absolute; /* Position the header absolutely within the .Myapp container */
+top: 80%; /* Center vertically */
+left: 50%; /* Center horizontally */
+transform: translate(-50%, -50%); /*Center the header perfectly*/
+font-family: sheepFont;
+font-size: 60pt;
+z-index: 1;
+background: transparent;
+border: none;
+color: #cc998d;
+}
+
+#back_account:hover {
     font-size: 80pt;
     color: #DC816C;
 }
 
 /* Create a flex container to hold the images side by side */
 
-.image-container {
+.image-container_account {
   display: flex;
   justify-content: space-between;
   height: 100vh;
@@ -64,7 +84,7 @@ color: #cc998d;
 }
 
 /* Style for each image */
-.image {
+.image_account {
   flex: 1; /*Each image takes up an equal part of the container*/
   text-align: center; /* Center the content horizontally */
   background-size: cover; /* Scale the background image to cover the entire div */
@@ -75,7 +95,7 @@ color: #cc998d;
   position: relative;
 }
 
-.image img{
+.image_account img{
   height: 100%;
   width: 100%;
   object-fit: cover;

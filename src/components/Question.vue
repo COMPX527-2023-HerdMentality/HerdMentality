@@ -1,16 +1,16 @@
 <template>
-  <div class="Myapp">
-    <h1 class="header">Who is most likely to be the most scared while watching a horror movie?</h1>
-    <div class="image-container">
-      <div class="image" @click="handleImageClick(1)">
+  <div class="Myapp_question">
+    <h1 class="header_question">Who is most likely to be the most scared while watching a horror movie?</h1>
+    <div class="image-container_question">
+      <div class="image_question" @click="handleImageClick(1)">
         <!-- TODO: Static local images need to be updated -->
-        <h2 class="imageLabel">Image 1</h2>
+        <h2 class="imageLabel_question">Image 1</h2>
         <img :src="image1Src" alt="Image 1">
         
       </div>
-      <div class="image" @click="handleImageClick(2)">
-        <h2 class="imageLabel">Image 2</h2>
-        <h2 class="scoreLabel">Score: {{ score }}</h2>
+      <div class="image_question" @click="handleImageClick(2)">
+        <h2 class="imageLabel_question">Image 2</h2>
+        <h2 class="scoreLabel_question">Score: {{ score }}</h2>
         <img :src="image2Src" alt="Image 2" >
         
       </div>
@@ -55,25 +55,25 @@ export default {
   font-family: sheepFont;
   src: url(../assets/fonts/sheep.ttf)
 }
-.Myapp {
+.Myapp_question {
   width: 100%;
 }
 
 /* Center the header text vertically and horizontally */
-.header {
+.header_question {
   text-align: center;
   color: #A6cbce;
   position: absolute; /* Position the header absolutely within the .Myapp container */
-  top: 10%; /* Center vertically */
+  top: 12%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
   font-family: sheepFont;
   z-index: 1; /* Ensure the header appears in front of the images */
-  font-size: 30pt;
+  font-size: 36pt;
 }
 
 /* Create a flex container to hold the images side by side */
-.image-container {
+.image-container_question {
   display: flex;
   justify-content: space-between;
   height: 100vh;
@@ -83,7 +83,7 @@ export default {
 }
 
 /* Style for each image */
-.image {
+.image_question {
   flex: 1; /*Each image takes up an equal part of the container*/
   text-align: center; /* Center the content horizontally */
   background-size: cover; /* Scale the background image to cover the entire div */
@@ -94,7 +94,7 @@ export default {
   position: relative;
 }
 
-.image img{
+.image_question img {
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -102,7 +102,7 @@ export default {
   opacity: 0.5;
 }
 
-.imageLabel{
+.imageLabel_question {
   color: #A6cbce;
   z-index: 1; /* Ensure the header appears in front of the images */
   position: absolute; /* Position the header absolutely within the .Myapp container */
@@ -114,7 +114,7 @@ export default {
   font-family: sheepFont;
 }
 
-.scoreLabel{
+.scoreLabel_question {
   color: #CC998D;
   z-index: 1; /* Ensure the header appears in front of the images */
   position: absolute; /* Position the header absolutely within the .Myapp container */

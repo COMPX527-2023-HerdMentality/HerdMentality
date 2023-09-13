@@ -1,13 +1,13 @@
 <template>
-    <div class="Myapp">
+    <div class="Myapp_gameover">
       <h1 class="header_gameover">GAME OVER</h1>
       <h2 class="score_gameover">Score: {{ score }}</h2>
       <h2 class="highScore_gameover">High Score: {{ highScore }}</h2>
       <router-link to="/play"><input id="play_gameover" type="button" value="Play Again"></router-link>
       <router-link to="/leaderboard"><input id="leaderboard_gameover" type="button" value="Leaderboard"></router-link>
       <router-link to="/"><input id="home_gameover" type="button" value="Home"></router-link>
-      <div class="image-container">
-        <div class="image">
+      <div class="image-container_gameover">
+        <div class="image_gameover">
           <!-- Your first image goes here -->
           <img src="../assets/images/gameOverImage.avif" alt="Image 1">
         </div>
@@ -40,7 +40,7 @@ export default {
     src: url(../assets/fonts/sheep.ttf);
 }
 
-  .Myapp {
+  .Myapp_gameover {
     width: 100%;
   }
   
@@ -133,7 +133,7 @@ export default {
   }
   
   /* Create a flex container to hold the images side by side */
-  .image-container {
+  .image-container_gameover {
     display: flex;
     justify-content: space-between;
     height: 100vh;
@@ -142,7 +142,7 @@ export default {
   }
   
   /* Style for each image */
-  .image {
+  .image_gameover {
     flex: 1; /*Each image takes up an equal part of the container*/
     text-align: center; /* Center the content horizontally */;
     /* background-size: cover; Scale the background image to cover the entire div */
@@ -151,7 +151,7 @@ export default {
     position: relative;
   }
   
-  .image img{
+  .image_gameover img{
     height: auto;
     width: 100%;
     object-fit: cover;
