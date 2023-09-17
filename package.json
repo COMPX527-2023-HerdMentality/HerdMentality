@@ -12,6 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "amazon-cognito-identity-js": "^6.3.5",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },
