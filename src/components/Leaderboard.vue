@@ -23,8 +23,8 @@
 export default {
   data() {
       return {
-		score: 0,
-       	highScore: 0
+          highScore: 0,
+          score: 0
       };
   },
   methods: {
@@ -52,6 +52,7 @@ export default {
 .header_leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 13%; /* Center vertically */
+
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
   z-index: 1; /* Ensure the header appears in front of the images */
