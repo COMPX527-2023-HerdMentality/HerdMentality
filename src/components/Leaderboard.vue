@@ -18,12 +18,13 @@
   </div>
 </template>More navigation added and delete account button made.
 
-<script>
+<script lang="ts">
 
 export default {
   data() {
       return {
-          highScore: 0
+		score: 0,
+       	highScore: 0
       };
   },
   methods: {
