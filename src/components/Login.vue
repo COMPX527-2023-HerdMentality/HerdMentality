@@ -30,6 +30,21 @@
             };
         },
     };
+    // import {CognitoUserPool} from "amazon-cognito-identity-js"
+    
+    
+
+    // try {
+    //     var poolData = {
+    //     UserPoolId: 'us-east-1_mjewQwwHp',
+    //     ClientId: '4evgbmouciqv3vodnoafsp4rag',
+    //     };
+    //     var x = new CognitoUserPool(poolData)
+    //     x.getCurrentUser()
+    // }
+    // catch(err) {
+    //     console.log(err);
+    // }
 </script>
 
 <style>
