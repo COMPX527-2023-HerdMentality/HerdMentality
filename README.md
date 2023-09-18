@@ -44,3 +44,8 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Preview production build
+```sh
+npm run preview
+```
