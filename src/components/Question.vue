@@ -20,8 +20,8 @@
 
 <script lang="ts" setup>
 import {ref} from 'vue'
-import router from "../router";
-
+import {useRouter} from 'vue-router'
+const router = useRouter()
 let image1Src = ref("");
 
 let image2Src = ref("");
