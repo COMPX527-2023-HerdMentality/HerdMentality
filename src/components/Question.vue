@@ -1,14 +1,14 @@
 <template>
   <div class="Myapp_question">
     <h1 id="header_question">{{ current_question_text }}</h1>
-    <div id="one" class="image-container_question">
-      <div class="image_question" @click="handleImageClick(1)">
+    <div class="image-container_question">
+      <div id="left_image" class="image_question" @click="handleImageClick(1)">
         <!-- TODO: Static local images need to be updated -->
         <h2 class="imageLabel_question">{{ character_one_label}}</h2>
         <img :src="image1Src" alt="Image 1">
         
       </div>
-      <div id="two" class="image_question" @click="handleImageClick(2)">
+      <div id="right_image" class="image_question" @click="handleImageClick(2)">
         <h2 class="imageLabel_question">{{ character_two_label}}</h2>
         <h2 class="scoreLabel_question">Score: {{ score }}</h2>
         <img :src="image2Src" alt="Image 2" >
@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import {ref} from 'vue'
-
+import router from "../router";
 
 let image1Src = ref(0);
 
@@ -43,11 +43,16 @@ function handleImageClick(imageNumber:Number) {
         {
           //Load in next question and increment score
           question_counter++;
-          updateQuestion()
+          
           score.value++;
+          document.getElementById("left_image")?.classList.add("container-transition-correct");
+
+          setTimeout(updateQuestion, 2500);
         }
         else{
           //Go to gameover screen, passing the final score
+          document.getElementById("left_image")?.classList.add("container-transition-wrong");
+          setTimeout(() => {router.push("/gameover")}, 2500);
         }
       }
       else{
@@ -55,11 +60,17 @@ function handleImageClick(imageNumber:Number) {
         {
           //Load in next question and increment score
           question_counter++;
-          updateQuestion()
+          
           score.value++;
+          document.getElementById("right_image")?.classList.add("container-transition-correct");
+
+
+          setTimeout(updateQuestion, 2500);
         }
         else{
           //Go to gameover screen, passing the final score
+          document.getElementById("right_image")?.classList.add("container-transition-wrong");
+          setTimeout(() => {router.push("/gameover")}, 2500);
         }
       }
       
@@ -126,17 +137,12 @@ function updateQuestion(){
 
   character_one_label.value = char1_temp;
   character_two_label.value = char2_temp;
+
+  document.getElementById("right_image")?.classList.remove("container-transition-correct");
+  document.getElementById("right_image")?.classList.remove("container-transition-wrong");
+  document.getElementById("left_image")?.classList.remove("container-transition-correct");
+  document.getElementById("left_image")?.classList.remove("container-transition-wrong");
 }
-
-// import image1Src from '../assets/images/testImage1.jpg';
-// import image2Src from '../assets/images/testImage3.jpg';
-
-// import questions from './questions.json';
-
-// // var image1Src = questions[question_counter]["Image1"];
-// // var image2Src = questions[question_counter]["Image2"];
-
-// console.log(questions);
 
 </script>
 
@@ -171,6 +177,16 @@ function updateQuestion(){
   width: 200%;
   background-color: rgba(0,0,0,1);
 
+}
+
+.container-transition-correct{
+  transition: background-color 1s;
+  background-color: rgb(51, 131, 43);
+}
+
+.container-transition-wrong{
+  transition: background-color 1s;
+  background-color: rgb(146, 33, 33);
 }
 
 /* Style for each image */
