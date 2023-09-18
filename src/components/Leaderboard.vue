@@ -18,50 +18,27 @@
   </div>
 </template>More navigation added and delete account button made.
 
-<script lang="ts">
-import {onMounted} from 'vue'
+<script lang="ts" setup>
+import {ref} from 'vue'
 import test_top from './test_leaderboard.json'
 
+var score1 = ref(0);
+var score2 = ref(0);
+var score3 = ref(0);
+var score4 = ref(0);
+var score5 = ref(0);
 
-var top;
-var score1 = test_top[0]["Score"]
-var score2 = test_top[1]["Score"]
-var score3 = test_top[2]["Score"]
-var score4 = test_top[3]["Score"]
-var score5 = test_top[4]["Score"]
-
-// fetch("https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/leaderboard", {
-//   method: "GET",
-//   headers: {
-//     "Content-Type": "application/json",
-//   }
-// }).then((response) => {
-//   if (response.ok) {
-//     top = response.json();
-//     console.log(top)
-//   }
-// })
-// onMounted(() => {
-  
-// })
-
-export default {
-  data() {
-      return {
-          highScore: 0,
-          score1: score1,
-          score2: score2,
-          score3: score3,
-          score4: score4,
-          score5: score5
-      };
-  },
-  methods: {
-      playClick() {
-          this.highScore++;
-      },
-  }
-};
+fetch("https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/leaderboard")
+.then(res => {
+  res.json().then(data => {
+    console.log(data)
+    score1.value = data[0]["Score"]
+    score2.value = data[1]["Score"]
+    score3.value = data[2]["Score"]
+    score4.value = data[3]["Score"]
+    score5.value = data[4]["Score"]
+  })
+})
 
 </script>
 
