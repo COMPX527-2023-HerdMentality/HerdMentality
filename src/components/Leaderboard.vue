@@ -1,11 +1,11 @@
 <template>
   <div class="Myapp_leaderboard">
     <h1 class="header_leaderboard">Leaderboard</h1>
-    <h2 class="score1_leaderboard">User: {{ score }}</h2>
-    <h2 class="score2_leaderboard">User: {{ score }}</h2>
-    <h2 class="score3_leaderboard">User: {{ score }}</h2>
-    <h2 class="score4_leaderboard">User: {{ score }}</h2>
-    <h2 class="score5_leaderboard">User: {{ score }}</h2>
+    <h2 class="score1_leaderboard">1. {{ score1 }}</h2>
+    <h2 class="score2_leaderboard">2. {{ score2 }}</h2>
+    <h2 class="score3_leaderboard">3. {{ score3 }}</h2>
+    <h2 class="score4_leaderboard">4. {{ score4 }}</h2>
+    <h2 class="score5_leaderboard">5. {{ score5 }}</h2>
     <h2 class="highScore_leaderboard">Your Highscore: {{ highScore }}</h2>
     <router-link to="/play"><input id="play_leaderboard" type="button" value="Play"></router-link>
     <router-link to="/"><input id="home_leaderboard" type="button" value="Home"></router-link>
@@ -19,11 +19,43 @@
 </template>More navigation added and delete account button made.
 
 <script>
+import {onMounted} from 'vue'
+import test_top from './test_leaderboard.json'
+
+
+var top;
+var score1 = test_top[0]["Score"]
+var score2 = test_top[1]["Score"]
+var score3 = test_top[2]["Score"]
+var score4 = test_top[3]["Score"]
+var score5 = test_top[4]["Score"]
+
+// fetch("https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/leaderboard", {
+//   method: "GET",
+//   headers: {
+//     "Content-Type": "application/json",
+//   }
+// }).then((response) => {
+//   if (response.ok) {
+//     top = response.json();
+//     console.log(top)
+//   }
+// })
+// onMounted(() => {
+  
+// })
+
+
 
 export default {
   data() {
       return {
-          highScore: 0
+          highScore: 0,
+          score1: score1,
+          score2: score2,
+          score3: score3,
+          score4: score4,
+          score5: score5
       };
   },
   methods: {
