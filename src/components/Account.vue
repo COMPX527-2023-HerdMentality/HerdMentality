@@ -2,6 +2,7 @@
     <div class="Myapp_account">
         <h1 class="header_account">Account</h1>
 
+        <input id="signout_account" type="button" value="Sign Out">
         <input id="delete_account" type="button" value="Delete Account">
         <router-link to="/"><input id="back_account" type="button" value="Back"></router-link>
 
@@ -32,6 +33,25 @@ z-index: 1; /* Ensure the header appears in front of the images */
 font-family: sheepFont;
 font-size: 130pt;
 color: #A6CBCE;
+}
+
+#signout_account {
+    text-align: center;
+position: absolute; /* Position the header absolutely within the .Myapp container */
+top: 45%; /* Center vertically */
+left: 50%; /* Center horizontally */
+transform: translate(-50%, -50%); /*Center the header perfectly*/
+font-family: sheepFont;
+font-size: 60pt;
+z-index: 1;
+background: transparent;
+border: none;
+color: #cc998d;
+}
+
+#signout_account:hover {
+    font-size: 80pt;
+    color: #DC816C;
 }
 
 #delete_account {
