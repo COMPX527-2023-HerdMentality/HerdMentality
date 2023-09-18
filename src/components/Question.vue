@@ -69,7 +69,10 @@ function handleImageClick(imageNumber:Number) {
           //Go to gameover screen, passing the final score
           document.getElementById("left_image")?.classList.add("container-transition-wrong");
           timeout_active = true;
-          setTimeout(() => {router.push("/gameover")}, 2500);
+          setTimeout(() => {
+            //Pass a parameter as part of the route's URL
+            router.push({ name: "gameover", params: { score: score.value } });
+          }, 2500);
           
         }
       }
@@ -90,12 +93,15 @@ function handleImageClick(imageNumber:Number) {
           //Go to gameover screen, passing the final score
           document.getElementById("right_image")?.classList.add("container-transition-wrong");
           timeout_active = true;
-          setTimeout(() => {router.push("/gameover")}, 2500);
+          setTimeout(() => {
+            //Pass a parameter as part of the route's URL
+            router.push({ name: "gameover", params: { score: score.value } });
+          }, 2500);
+
         }
       }
       
     }
-
 
 async function getQuestions(){
   let response = await fetch('https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/questions');

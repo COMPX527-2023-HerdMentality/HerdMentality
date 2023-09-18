@@ -1,7 +1,7 @@
 <template>
     <div class="Myapp_gameover">
       <h1 class="header_gameover">GAME OVER</h1>
-      <h2 class="score_gameover">Score: {{ score }}</h2>
+      <h2 class="score_gameover">Score: {{ $route.params.score }}</h2>
       <h2 class="highScore_gameover">High Score: {{ highScore }}</h2>
       <router-link to="/play"><input id="play_gameover" type="button" value="Play Again"></router-link>
       <router-link to="/leaderboard"><input id="leaderboard_gameover" type="button" value="Leaderboard"></router-link>
@@ -25,9 +25,6 @@ export default {
         };
     },
     methods: {
-        play_gameoverClick() {
-            this.score++;
-        }
     }
 };
 
