@@ -1,0 +1,26 @@
+[
+  {
+    "Votes1": "0",
+    "Image1": "images/Taylor_Swift.png",
+    "Votes2": "0",
+    "Question": "Most likely to be a fantastic cook?",
+    "ID": "37",
+    "Image2": "images/Steven_Spielberg.jpg"
+  },
+  {
+    "Votes1": "2",
+    "Image1": "images/Wonder_Woman.JPG",
+    "Votes2": "0",
+    "Question": "Most likely to run into a glass door?",
+    "ID": "4",
+    "Image2": "images/Aragorn.png"
+  },
+  {
+    "Votes1": "0",
+    "Image1": "images/Marilyn_Monroe.jpg",
+    "Votes2": "0",
+    "Question": "Most likely to start the day with ice cream?",
+    "ID": "19",
+    "Image2": "images/Bob_Dylan.jpg"
+  }
+]
