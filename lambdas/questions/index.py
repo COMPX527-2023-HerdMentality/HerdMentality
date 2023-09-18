@@ -78,8 +78,8 @@ def handler(event, context):
             # Get the updated vote count
             updated_vote_count = response['Attributes'][vote_type]
     
-            res['statusCode'] = 200,
-            res['body']: json.dumps({'message': 'Vote counted successfully', 'updated_vote_count': updated_vote_count})
+            res['statusCode'] = 200
+            res['body'] = json.dumps({'message': 'Vote counted successfully', 'updated_vote_count': updated_vote_count})
             
         except Exception as e:
             res['statusCode'] = 500
@@ -87,4 +87,5 @@ def handler(event, context):
             
     # return created response
     return res
+
 
