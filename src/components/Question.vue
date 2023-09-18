@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import image1Src from '../assets/images/testImage1.jpg';
 import image2Src from '../assets/images/testImage3.jpg';
 
@@ -31,7 +31,7 @@ export default {
     };
   },
   methods: {
-    handleImageClick(imageNumber) {
+    handleImageClick(imageNumber:Number) {
       // Swap the image sources when Image 1 is clicked
       if (imageNumber == 1)
       {

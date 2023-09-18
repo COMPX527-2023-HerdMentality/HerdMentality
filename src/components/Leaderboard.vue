@@ -18,44 +18,13 @@
   </div>
 </template>More navigation added and delete account button made.
 
-<script>
-import {onMounted} from 'vue'
-import test_top from './test_leaderboard.json'
-
-
-var top;
-var score1 = test_top[0]["Score"]
-var score2 = test_top[1]["Score"]
-var score3 = test_top[2]["Score"]
-var score4 = test_top[3]["Score"]
-var score5 = test_top[4]["Score"]
-
-// fetch("https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/leaderboard", {
-//   method: "GET",
-//   headers: {
-//     "Content-Type": "application/json",
-//   }
-// }).then((response) => {
-//   if (response.ok) {
-//     top = response.json();
-//     console.log(top)
-//   }
-// })
-// onMounted(() => {
-  
-// })
-
-
+<script lang="ts">
 
 export default {
   data() {
       return {
           highScore: 0,
-          score1: score1,
-          score2: score2,
-          score3: score3,
-          score4: score4,
-          score5: score5
+          score: 0
       };
   },
   methods: {
@@ -83,6 +52,7 @@ export default {
 .header_leaderboard {
   position: absolute; /* Position the header absolutely within the .Myapp container */
   top: 13%; /* Center vertically */
+
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
   z-index: 1; /* Ensure the header appears in front of the images */
