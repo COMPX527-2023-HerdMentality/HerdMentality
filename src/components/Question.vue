@@ -22,16 +22,16 @@
 import {ref} from 'vue'
 import router from "../router";
 
-let image1Src = ref(0);
+let image1Src = ref("");
 
-let image2Src = ref(0);
+let image2Src = ref("");
 let score = ref(0);
 
-let questions : [];
+let questions: any;
 
 var question_counter = 0;
 
-let current_question_text = ref(0)
+let current_question_text = ref(0);
 
 let character_one_label = ref(0);
 let character_two_label = ref(0);
@@ -87,8 +87,8 @@ async function getQuestions(){
   image1Src.value = questions[question_counter]["Image1"];
   image2Src.value = questions[question_counter]["Image2"];
   current_question_text.value = questions[question_counter]["Question"];
-  var char1_temp = questions[question_counter]["Image1"];
-  var char2_temp = questions[question_counter]["Image2"];
+  let char1_temp = questions[question_counter]["Image1"];
+  let char2_temp = questions[question_counter]["Image2"];
 
   var char1_array = String(char1_temp).split("/")[1].split(".")[0].split("_");
   var char2_array = String(char2_temp).split("/")[1].split(".")[0].split("_");
