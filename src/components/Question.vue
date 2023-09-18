@@ -31,14 +31,29 @@ let questions: any;
 
 var question_counter = 0;
 
-let current_question_text = ref(0);
+var timeout_active = false;
 
-let character_one_label = ref(0);
-let character_two_label = ref(0);
+let current_question_text = ref("");
+
+let character_one_label = ref("");
+let character_two_label = ref("");
 
 function handleImageClick(imageNumber:Number) {
+      if (timeout_active)
+      {
+        return;
+      }
+
+      var total_votes = parseInt(questions[question_counter]["Votes1"]) + parseInt(questions[question_counter]["Votes2"]);
+      var percent_for_one = (parseFloat(questions[question_counter]["Votes1"]) / total_votes) * 100;
+      var percent_for_two = (parseFloat(questions[question_counter]["Votes2"]) / total_votes) * 100;
+
+      character_one_label.value = character_one_label.value + "\n" + percent_for_one.toFixed(2) + "%";
+      character_two_label.value = character_two_label.value + "\n" + percent_for_two.toFixed(2) + "%";
+
       if (imageNumber == 1)
       {
+        postAnswer(1);
         if (questions[question_counter]["Votes1"] >= questions[question_counter]["Votes2"])
         {
           //Load in next question and increment score
@@ -46,16 +61,20 @@ function handleImageClick(imageNumber:Number) {
           
           score.value++;
           document.getElementById("left_image")?.classList.add("container-transition-correct");
+          timeout_active = true;
 
           setTimeout(updateQuestion, 2500);
         }
         else{
           //Go to gameover screen, passing the final score
           document.getElementById("left_image")?.classList.add("container-transition-wrong");
+          timeout_active = true;
           setTimeout(() => {router.push("/gameover")}, 2500);
+          
         }
       }
       else{
+        postAnswer(2);
         if (questions[question_counter]["Votes2"] >= questions[question_counter]["Votes1"])
         {
           //Load in next question and increment score
@@ -63,23 +82,20 @@ function handleImageClick(imageNumber:Number) {
           
           score.value++;
           document.getElementById("right_image")?.classList.add("container-transition-correct");
-
+          timeout_active = true;
 
           setTimeout(updateQuestion, 2500);
         }
         else{
           //Go to gameover screen, passing the final score
           document.getElementById("right_image")?.classList.add("container-transition-wrong");
+          timeout_active = true;
           setTimeout(() => {router.push("/gameover")}, 2500);
         }
       }
       
     }
 
-
-// function getMoreQuestions() {
-//       var questions = fetch('https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/questions');
-//     }
 
 async function getQuestions(){
   let response = await fetch('https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/questions');
@@ -142,6 +158,18 @@ function updateQuestion(){
   document.getElementById("right_image")?.classList.remove("container-transition-wrong");
   document.getElementById("left_image")?.classList.remove("container-transition-correct");
   document.getElementById("left_image")?.classList.remove("container-transition-wrong");
+
+  timeout_active = false;
+}
+
+function postAnswer(vote: number): void{
+  fetch("https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/questions", {
+  method: "POST",
+  body: JSON.stringify({
+    question_id: questions[question_counter]["ID"],
+    vote_type: "Votes" + String(vote)
+  }),
+});
 }
 
 </script>
