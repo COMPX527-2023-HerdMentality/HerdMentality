@@ -27,6 +27,7 @@ var score2 = ref(0);
 var score3 = ref(0);
 var score4 = ref(0);
 var score5 = ref(0);
+var highScore = 0
 
 fetch("https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/leaderboard")
 .then(res => {
