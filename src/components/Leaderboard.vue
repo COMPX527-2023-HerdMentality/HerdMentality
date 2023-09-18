@@ -12,7 +12,7 @@
     <div class="image-container_leaderboard">
       <div class="image_leaderboard">
         <!-- Your first image goes here -->
-        <img src="../assets/images/gameOverImage.avif" alt="Image 1">
+        <img src="../assets/images/leaderboard.jpg" alt="Image 1">
       </div>
     </div>
   </div>
