@@ -8,6 +8,17 @@ table_name = "Leaderboard"
 # Create the DynamoDB resource
 leaderboard_table = boto3.resource('dynamodb').Table(table_name)
 
+
+res = {
+	'statusCode': 400,
+	'body': json.dumps('Bad Request'),
+	'headers': {
+    	'Access-Control-Allow-Headers': 'Content-Type',
+    	'Access-Control-Allow-Origin': '*',
+    	'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+	},
+}
+
 def handler(event, context):
  
     # If we are getting the leaderboard with just /leaderboard and no body
@@ -39,12 +50,9 @@ def handler(event, context):
             user_id = item['UserID']
             score = float(item['Score'])  # Convert Decimal to float
             leaderboard.append({'UserId': user_id, 'Score': score})
- 
-        # Return the leaderboard as a JSON response
-        return {
-            'statusCode': 200,
-            'body': json.dumps(leaderboard)
-        }
+
+        res['statusCode'] = 200
+        res['body'] = json.dumps(leaderboard)
     
     # If the request is a POST then extract the body with the new score and update the leaderboard
     elif event['httpMethod'] == 'POST':
@@ -55,10 +63,8 @@ def handler(event, context):
             score = request_body['score']
         # Account for bad data format 
         except KeyError:
-            return {
-                'statusCode': 400,
-                'body': json.dumps('Invalid request body format')
-            }
+            res['statusCode'] = 400,
+            res['body'] = json.dumps('Invalid request body format')
         
         # Add the new entry to the leaderboard
         leaderboard_table.put_item(
@@ -68,14 +74,8 @@ def handler(event, context):
             }
         )
         
-        return {
-            'statusCode': 201,
-            'body': json.dumps('New entry added to the leaderboard')
-        }
-    
-    # Otherwise a bad request has occured 
-    else:
-        return {
-            'statusCode': 400,
-            'body': json.dumps('Bad Request')
-        }
+        res['statusCode'] = 201
+        res['body'] = json.dumps('New entry added to the leaderboard')
+	
+	# return the created response
+    return res

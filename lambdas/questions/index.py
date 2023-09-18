@@ -8,6 +8,17 @@ table_name = "Questions"
 # Create the client
 dynamodb = boto3.client('dynamodb', region_name="us-east-1")
 
+res = {
+	'statusCode': 400,
+	'body': json.dumps('Bad Request'),
+	'headers': {
+    	'Access-Control-Allow-Headers': 'Content-Type',
+    	'Access-Control-Allow-Origin': '*',
+    	'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+	},
+}
+
+
 def handler(event, context):
     if event['httpMethod'] == 'GET':
         try:
@@ -33,15 +44,12 @@ def handler(event, context):
             questions = questions[:20]
 
             # Return the questions as a JSON response
-            return {
-                'statusCode': 200,
-                'body': json.dumps(questions, default=str) 
-            }
+            res['statusCode'] = 200
+            res['body'] = json.dumps(questions, default=str)
+            
         except Exception as e:
-            return {
-                'statusCode': 500,
-                'body': json.dumps(str(e))
-            }
+            res['statusCode'] = 500
+            res['body'] = json.dumps(str(e))
             
     elif event['httpMethod'] == 'POST':
         try:
@@ -54,10 +62,9 @@ def handler(event, context):
     
             # Check if both 'question_id' and 'vote_type' are provided
             if not question_id or vote_type not in ('Votes1', 'Votes2'): 
-                return {
-                    'statusCode': 400,
-                    'body': json.dumps('Invalid request body format')
-                }
+                res['statusCode'] = 400
+                res['body'] = json.dumps('Invalid request body format')
+                return res
     
             # Increment the vote count based on 'vote_type' (Votes1 or Votes2)
             response = dynamodb.update_item(
@@ -71,17 +78,13 @@ def handler(event, context):
             # Get the updated vote count
             updated_vote_count = response['Attributes'][vote_type]
     
-            return {
-                'statusCode': 200,
-                'body': json.dumps({'message': 'Vote counted successfully', 'updated_vote_count': updated_vote_count})
-            }
+            res['statusCode'] = 200,
+            res['body']: json.dumps({'message': 'Vote counted successfully', 'updated_vote_count': updated_vote_count})
+            
         except Exception as e:
-            return {
-                'statusCode': 500,
-                'body': json.dumps(str(e))
-            }
-    else:
-        return {
-            'statusCode': 400,
-            'body': json.dumps('Bad Request')
-        }
+            res['statusCode'] = 500
+            res['body'] = json.dumps(str(e))
+            
+    # return created response
+    return res
+
