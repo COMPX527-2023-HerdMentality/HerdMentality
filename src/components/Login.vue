@@ -2,7 +2,6 @@
 <template>
     <div class="Myapp_login">
         <h1 class="header_login">Herd Mentality</h1>
-
         <a v-if="hostname == 'localhost'" href="https://herdmentality.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=4evgbmouciqv3vodnoafsp4rag&response_type=code&scope=email+openid+phone&redirect_uri=http://localhost:5173">
             <img src="@/assets/google.svg" alt="Google Sign-In" class="google-svg" />
         </a>
@@ -18,7 +17,7 @@
 </template>
 
 
-<script lang="ts">
+<script setup lang="ts">
 
     const hostname = window.location.hostname;
     import googleSvg from '@/assets/google.svg';
@@ -33,20 +32,16 @@
         },
     };
     // import {CognitoUserPool} from "amazon-cognito-identity-js"
+    import {ref} from 'vue';
+    const hostname = ref("");
+    hostname.value = window.location.hostname;
     
+    const hash = window.location.hash.substr(1);
+    if(hash != "" && hash.includes("access_token=")){
+        // Submit the access token to our API endpoint to have it returned in an httpOnly cookie
+        fetch("https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/login?"+hash);
+    }
     
-
-    // try {
-    //     var poolData = {
-    //     UserPoolId: 'us-east-1_mjewQwwHp',
-    //     ClientId: '4evgbmouciqv3vodnoafsp4rag',
-    //     };
-    //     var x = new CognitoUserPool(poolData)
-    //     x.getCurrentUser()
-    // }
-    // catch(err) {
-    //     console.log(err);
-    // }
 </script>
 
 <style>
@@ -117,6 +112,7 @@ color: #cc998d;
   background-color: transparent;
   opacity: 0.5;
 }
+<<<<<<< HEAD
 
 .google-svg{
     z-index: 2; /* Place it above the background image */
@@ -200,3 +196,6 @@ color: #cc998d;
 }
 }
 </style>
+=======
+</style>
+>>>>>>> c929fe7 (working on persisting login)
