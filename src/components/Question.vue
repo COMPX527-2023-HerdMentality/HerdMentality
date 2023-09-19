@@ -12,16 +12,24 @@
         <h2 class="imageLabel_question">{{ character_two_label}}</h2>
         <h2 class="scoreLabel_question">Score: {{ score }}</h2>
         <img :src="image2Src" alt="Image 2" >
-        
       </div>
     </div>
+    <img id="temp1" :src="temp1" alt="temp1" >
+    <img id="temp2" :src="temp2" alt="temp2" >
+
   </div>
 </template>
 
 <script lang="ts" setup>
 import {ref} from 'vue'
 import {useRouter} from 'vue-router'
+
 const router = useRouter()
+
+//Preloading images setup
+let temp1 = ref("");
+let temp2 = ref("");
+
 let image1Src = ref("");
 
 let image2Src = ref("");
@@ -99,8 +107,7 @@ function handleImageClick(imageNumber:Number) {
           }, 2500);
 
         }
-      }
-      
+      }   
     }
 
 async function getQuestions(){
@@ -108,6 +115,14 @@ async function getQuestions(){
   questions = await response.json();
   image1Src.value = questions[question_counter]["Image1"];
   image2Src.value = questions[question_counter]["Image2"];
+
+  //Getting images for next question
+  temp1.value = questions[question_counter+1]["Image1"];
+  temp2.value = questions[question_counter+1]["Image2"];
+
+  console.log(temp1.value);
+  console.log(temp2.value);
+
   current_question_text.value = questions[question_counter]["Question"];
   let char1_temp = questions[question_counter]["Image1"];
   let char2_temp = questions[question_counter]["Image2"];
@@ -133,10 +148,15 @@ async function getQuestions(){
 }
 getQuestions();
 
-
 function updateQuestion(){
-  image1Src.value = questions[question_counter]["Image1"];
-  image2Src.value = questions[question_counter]["Image2"];
+  
+  image1Src.value =  temp1.value;
+  image2Src.value =  temp2.value;
+
+  //Preload next images
+  temp1.value = questions[question_counter+1]["Image1"];
+  temp2.value = questions[question_counter+1]["Image2"]; 
+
   current_question_text.value = questions[question_counter]["Question"];
   var char1_temp = questions[question_counter]["Image1"];
   var char2_temp = questions[question_counter]["Image2"];
@@ -177,7 +197,6 @@ function postAnswer(vote: number): void{
   }),
 });
 }
-
 </script>
 
 <style>
@@ -188,6 +207,11 @@ function postAnswer(vote: number): void{
 }
 .Myapp_question {
   width: 100%;
+}
+
+/*Holder image div set to hidden*/
+#temp1, #temp2{
+  display: none;
 }
 
 /* Center the header text vertically and horizontally */

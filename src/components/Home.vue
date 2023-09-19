@@ -1,5 +1,8 @@
 
 <template>
+
+    <link rel="typescript"  src="preload.ts" />
+
     <!--https://beginnersoftwaredeveloper.com/how-do-i-navigate-between-views-on-my-vue-router/-->
     <div class="Myapp_home">
         <h1 class="header_home">Herd Mentality</h1>
@@ -7,6 +10,8 @@
         <router-link to="/account"><input id="account_home" type="button" value="Account"></router-link>
         <router-link to="/play"><input id="play_home" type="button" value="Play"></router-link>
         <router-link to="/leaderboard"><input id="leaderboard_home" type="button" value="Leaderboard"></router-link>
+
+        
 
         <div class="image-container_home">
             <div class="image_home">
@@ -17,9 +22,9 @@
     </div>
 </template>
 
-
 /* Center the header text vertically and horizontally */
 <style>
+
 
 @font-face {
     font-family: sheepFont;
