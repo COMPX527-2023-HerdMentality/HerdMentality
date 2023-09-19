@@ -31,7 +31,7 @@ const router = createRouter({
       component: Leaderboard
     },
     {
-      path: '/gameover',
+      path: '/gameover/:score',
       name: 'gameover',
       component: GameOver
     },
