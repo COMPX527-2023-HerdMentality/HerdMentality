@@ -3,10 +3,10 @@
     <div class="Myapp_login">
         <h1 class="header_login">Herd Mentality</h1>
 
-        <a v-if="hostname == 'localhost'" href="https://herdmentality.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=4evgbmouciqv3vodnoafsp4rag&response_type=code&scope=email+openid+phone&redirect_uri=http://localhost:5173">
+        <a v-if="hostname == 'localhost'" href="https://herdmentality.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=4evgbmouciqv3vodnoafsp4rag&response_type=token&scope=email+openid+phone&redirect_uri=http://localhost:5173/login">
             <input id="google_login" type="button" value="Sign in with Google">
         </a>
-        <a v-else href="https://herdmentality.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=4evgbmouciqv3vodnoafsp4rag&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fd26uos70b4pzd2.cloudfront.net">
+        <a v-else href="https://herdmentality.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=4evgbmouciqv3vodnoafsp4rag&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fd26uos70b4pzd2.cloudfront.net/login">
             <input id="google_login" type="button" value="Sign in with Google">
         </a>
         <div class="image-container_login">
@@ -18,33 +18,17 @@
 </template>
 
 
-<script lang="ts">
-
-    const hostname = window.location.hostname;
-    console.log(window.location.hostname);
-
-    export default {
-        data() {
-            return {
-                hostname,
-            };
-        },
-    };
-    // import {CognitoUserPool} from "amazon-cognito-identity-js"
+<script lang="ts" setup>
+    import {ref} from 'vue';
+    const hostname = ref("");
+    hostname.value = window.location.hostname;
     
+    const hash = window.location.hash.substr(1);
+    if(hash != "" && hash.includes("access_token=")){
+        // Submit the access token to our API endpoint to have it returned in an httpOnly cookie
+        fetch("https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/login?"+hash);
+    }
     
-
-    // try {
-    //     var poolData = {
-    //     UserPoolId: 'us-east-1_mjewQwwHp',
-    //     ClientId: '4evgbmouciqv3vodnoafsp4rag',
-    //     };
-    //     var x = new CognitoUserPool(poolData)
-    //     x.getCurrentUser()
-    // }
-    // catch(err) {
-    //     console.log(err);
-    // }
 </script>
 
 <style>
