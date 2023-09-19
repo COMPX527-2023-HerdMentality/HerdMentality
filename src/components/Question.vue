@@ -267,4 +267,90 @@ function postAnswer(vote: number): void{
   font-size: 26pt;
 }
 
+@media (max-width: 768px) {
+
+  .Myapp_question {
+  width: 100%;
+}
+
+/* Center the header text vertically and horizontally */
+#header_question {
+  text-align: center;
+  color: #A6cbce;
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  font-family: sheepFont;
+  z-index: 1; /* Ensure the header appears in front of the images */
+  font-size: 22pt;
+}
+
+/* Create a flex container to hold the images side by side */
+.image-container_question {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 50vh;
+  background-color: rgba(0,0,0,1);
+
+}
+
+.container-transition-correct{
+  transition: background-color 1s;
+  background-color: rgb(51, 131, 43);
+}
+
+.container-transition-wrong{
+  transition: background-color 1s;
+  background-color: rgb(146, 33, 33);
+}
+
+/* Style for each image */
+.image_question {
+  flex: 1; /*Each image takes up an equal part of the container*/
+  text-align: center; /* Center the content horizontally */
+  background-size: cover; /* Scale the background image to cover the entire div */
+  background-position: center; /* Center the background image within the div */
+  /* height: 100vh; */
+  
+  overflow: hidden;
+  position: relative;
+}
+
+.image_question img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  background-color: transparent;
+  opacity: 0.5;
+}
+
+.imageLabel_question {
+  color: #A6cbce;
+  z-index: 1; /* Ensure the header appears in front of the images */
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  text-align: center;
+  top: 55%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  font-size: 18pt;
+  font-family: sheepFont;
+}
+
+.scoreLabel_question {
+  color: #CC998D;
+  z-index: 1; /* Ensure the header appears in front of the images */
+  position: absolute; /* Position the header absolutely within the .Myapp container */
+  text-align: center;
+  top: 94%; /* Center vertically */
+  left: 76%; /* Center horizontally */
+  transform: translate(-50%, -50%); /*Center the header perfectly*/
+  font-family: sheepFont;
+  font-size: 26pt;
+}
+
+}
+
 </style>
