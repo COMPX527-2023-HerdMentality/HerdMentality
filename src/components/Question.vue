@@ -6,13 +6,17 @@
         <!-- TODO: Static local images need to be updated -->
         <h2 class="imageLabel_question">{{ character_one_label}}</h2>
         <img :src="image1Src" alt="Image 1">
+        <div id="left_transition_div" class="transition_inactive"></div>
         
       </div>
+      
       <div id="right_image" class="image_question" @click="handleImageClick(2)">
         <h2 class="imageLabel_question">{{ character_two_label}}</h2>
         <h2 class="scoreLabel_question">Score: {{ score }}</h2>
         <img :src="image2Src" alt="Image 2" >
+        <div id="right_transition_div" class="transition_inactive"></div>
       </div>
+      
     </div>
     <img id="temp1" :src="temp1" alt="temp1" >
     <img id="temp2" :src="temp2" alt="temp2" >
@@ -59,6 +63,20 @@ function handleImageClick(imageNumber:Number) {
       character_one_label.value = character_one_label.value + "\n" + percent_for_one.toFixed(2) + "%";
       character_two_label.value = character_two_label.value + "\n" + percent_for_two.toFixed(2) + "%";
 
+      //set heights for transition divs
+      var leftTransitionDiv = document.getElementById("left_transition_div");
+          if (leftTransitionDiv !== null) {
+            leftTransitionDiv.style.height = percent_for_one + "%";
+          }
+
+          var rightTransitionDiv = document.getElementById("right_transition_div");
+          if (rightTransitionDiv !== null) {
+            rightTransitionDiv.style.height = percent_for_two + "%";
+          }
+
+      document.getElementById("left_transition_div")?.classList.remove("transition_inactive");
+      document.getElementById("right_transition_div")?.classList.remove("transition_inactive");
+
       if (imageNumber == 1)
       {
         postAnswer(1);
@@ -68,20 +86,26 @@ function handleImageClick(imageNumber:Number) {
           question_counter++;
           
           score.value++;
-          document.getElementById("left_image")?.classList.add("container-transition-correct");
+
+          document.getElementById("left_transition_div")?.classList.add("transition_correct");
+          document.getElementById("right_transition_div")?.classList.add("transition_incorrect");
+          
           timeout_active = true;
 
           setTimeout(updateQuestion, 2500);
         }
         else{
           //Go to gameover screen, passing the final score
-          document.getElementById("left_image")?.classList.add("container-transition-wrong");
+          //document.getElementById("left_image")?.classList.add("container-transition-wrong");
+          document.getElementById("left_transition_div")?.classList.add("transition_incorrect");
           timeout_active = true;
           setTimeout(() => {
             //Pass a parameter as part of the route's URL
             router.push({ name: "gameover", params: { score: score.value } });
           }, 2500);
-          
+
+          document.getElementById("left_transition_div")?.classList.add("transition_incorrect");
+          document.getElementById("right_transition_div")?.classList.add("transition_correct");
         }
       }
       else{
@@ -92,20 +116,25 @@ function handleImageClick(imageNumber:Number) {
           question_counter++;
           
           score.value++;
-          document.getElementById("right_image")?.classList.add("container-transition-correct");
+          //document.getElementById("right_image")?.classList.add("container-transition-correct");
+          document.getElementById("right_transition_div")?.classList.add("transition_correct");
           timeout_active = true;
 
           setTimeout(updateQuestion, 2500);
+          document.getElementById("left_transition_div")?.classList.add("transition_incorrect");
+          document.getElementById("right_transition_div")?.classList.add("transition_correct");
         }
         else{
           //Go to gameover screen, passing the final score
-          document.getElementById("right_image")?.classList.add("container-transition-wrong");
+          //document.getElementById("right_image")?.classList.add("container-transition-wrong");
+          document.getElementById("right_transition_div")?.classList.add("transition_incorrect");
           timeout_active = true;
           setTimeout(() => {
             //Pass a parameter as part of the route's URL
             router.push({ name: "gameover", params: { score: score.value } });
           }, 2500);
-
+          document.getElementById("left_transition_div")?.classList.add("transition_correct");
+          document.getElementById("right_transition_div")?.classList.add("transition_incorrect");
         }
       }   
     }
@@ -180,10 +209,28 @@ function updateQuestion(){
   character_one_label.value = char1_temp;
   character_two_label.value = char2_temp;
 
-  document.getElementById("right_image")?.classList.remove("container-transition-correct");
-  document.getElementById("right_image")?.classList.remove("container-transition-wrong");
-  document.getElementById("left_image")?.classList.remove("container-transition-correct");
-  document.getElementById("left_image")?.classList.remove("container-transition-wrong");
+  // document.getElementById("right_image")?.classList.remove("container-transition-correct");
+  // document.getElementById("right_image")?.classList.remove("container-transition-wrong");
+  // document.getElementById("left_image")?.classList.remove("container-transition-correct");
+  // document.getElementById("left_image")?.classList.remove("container-transition-wrong");
+  document.getElementById("left_transition_div")?.classList.remove("transition_correct");
+  document.getElementById("left_transition_div")?.classList.remove("transition_incorrect");
+  document.getElementById("left_transition_div")?.classList.add("transition_inactive");
+  document.getElementById("right_transition_div")?.classList.remove("transition_correct");
+  document.getElementById("right_transition_div")?.classList.remove("transition_incorrect");
+  document.getElementById("right_transition_div")?.classList.add("transition_inactive");
+
+  var leftTransitionDiv = document.getElementById("left_transition_div");
+  if (leftTransitionDiv !== null) {
+    leftTransitionDiv.style.height = "0%";
+  }
+
+  var rightTransitionDiv = document.getElementById("right_transition_div");
+  if (rightTransitionDiv !== null) {
+    rightTransitionDiv.style.height = "0%";
+  }
+
+
 
   timeout_active = false;
 }
@@ -223,7 +270,7 @@ function postAnswer(vote: number): void{
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /*Center the header perfectly*/
   font-family: sheepFont;
-  z-index: 1; /* Ensure the header appears in front of the images */
+  z-index: 3; /* Ensure the header appears in front of the images */
   font-size: 44pt;
 }
 
@@ -263,13 +310,14 @@ function postAnswer(vote: number): void{
   height: 100%;
   width: 100%;
   object-fit: cover;
+  display: block;
   background-color: transparent;
   opacity: 0.5;
 }
 
 .imageLabel_question {
   color: #A6cbce;
-  z-index: 1; /* Ensure the header appears in front of the images */
+  z-index: 3; /* Ensure the header appears in front of the images */
   position: absolute; /* Position the header absolutely within the .Myapp container */
   text-align: center;
   top: 75%; /* Center vertically */
@@ -290,6 +338,36 @@ function postAnswer(vote: number): void{
   font-family: sheepFont;
   font-size: 26pt;
 }
+
+.transition_inactive{
+  visibility: hidden;
+  width: 50%;
+  bottom: 0;
+  left: 0;
+  height: 0px;
+  z-index: 2;
+}
+
+.transition_correct{
+  width: 100%;
+  background-color: rgba(47, 150, 38, 0.5);
+  z-index: 2;
+  bottom: 0px;
+  height: 0px;
+  position: absolute;
+  transition: height 2s;
+}
+
+.transition_incorrect{
+  width: 100%;
+  background-color: rgba(182, 24, 24, 0.5);
+  bottom: 0px;
+  height: 0px;
+  z-index: 2;
+  position: absolute;
+  transition: height 2s;
+}
+
 
 @media (max-width: 768px) {
 
