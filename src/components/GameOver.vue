@@ -17,6 +17,24 @@
   
 <script lang="ts">
 
+// const topicArn = 'arn:aws:sns:us-east-1:760360511766:leaderboard_notifier';
+// const message = 'Someone has just entered the leaderboard, jump back in now to secure your position!';
+
+
+// // Create an AWS service instance (e.g., SNS)
+// const sns = new AWS.SNS();
+
+// sns.publish({
+//   TopicArn: topicArn,
+//   Message: message,
+// }, (err, data) => {
+//   if (err) {
+//     console.error('Error publishing message:', err);
+//   } else {
+//     console.log('Message published successfully:', data);
+//   }
+// });
+
 export default {
     data() {
         return {
