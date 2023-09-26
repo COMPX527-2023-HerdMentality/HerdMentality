@@ -11,7 +11,7 @@ app.use(router)
 
 app.mount('#app')
 
-const redirectURL = window.location.origin + window.location.path
+const redirectURL = window.location.origin + window.location.pathname
 
 Amplify.configure({
   Auth: {
