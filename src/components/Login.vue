@@ -16,13 +16,19 @@
 import { Auth } from 'aws-amplify'
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth'
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 async function login() {
   Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })
 }
 
 onMounted(async () => {
   const currentUser = await Auth.currentAuthenticatedUser()
-  console.log(currentUser)
+  if (currentUser) {
+    router.push('/play')
+  }
 })
 </script>
 
