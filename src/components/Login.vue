@@ -18,6 +18,8 @@ import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
+const LEADERBOARD_API = 'https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/leaderboard'
+
 const router = useRouter()
 
 async function login() {
@@ -26,8 +28,30 @@ async function login() {
 
 onMounted(async () => {
   const currentUser = await Auth.currentAuthenticatedUser()
+  console.log(currentUser);
   if (currentUser) {
-    router.push('/')
+    let response = await fetch(LEADERBOARD_API + "?user_id=" + currentUser.username, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + currentUser.signInUserSession.accessToken.jwtToken
+      }
+    })
+
+    debugger
+
+    var score = await response.json();
+    score = parseInt(score['Score']);
+
+    console.log("score: " + score);
+
+    if (score != -1)
+    {
+      router.push('/');
+    }
+    else{
+      router.push('/signup');
+    }
+    
   }
 })
 </script>
