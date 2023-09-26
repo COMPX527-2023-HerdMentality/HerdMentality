@@ -23,20 +23,6 @@ def handler(event, context):
  
     # If we are getting the leaderboard with just /leaderboard and no body
     if event['httpMethod'] == 'GET':
-        # Use the query operation to retrieve the top 10 scores in descending order
-        # response = leaderboard_table.query(
-        #     IndexName='UserID', 
-        #     KeyConditionExpression=Key('Score').gte(0),
-        #     ScanIndexForward=False,  # Sort in descending order
-        #     Limit=10  # Limit the result to the top 10 scores
-        # )
-        
-        # # Append each user's data to the leaderboard list
-        # for item in response['Items']:
-        #     user_id = item['UserId']
-        #     score = item['Score']  # Replace with your score attribute name
-        #     leaderboard.append({'UserId': user_id, 'Score': score})
-
         # Use the scan operation to retrieve all items in the table
         response = leaderboard_table.scan()
         
