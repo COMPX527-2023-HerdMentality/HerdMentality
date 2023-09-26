@@ -4,6 +4,28 @@ import HelloWorld from './components/HelloWorld.vue'
 import QuestionView from './components/Question.vue'
 import HomeView from './components/Home.vue'
 import AccountView from './components/Account.vue'
+
+import { Auth } from 'aws-amplify'
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+async function login() {
+  Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })
+}
+
+onMounted(async () => {
+  try{
+    const currentUser = await Auth.currentAuthenticatedUser()
+    console.log(currentUser)
+  }
+  catch{
+    router.push({ name: 'login'})
+    console.log("no user")
+  }
+})
 </script>
 
 <template>
