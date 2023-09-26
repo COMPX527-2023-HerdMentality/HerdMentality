@@ -23,9 +23,17 @@ def lambda_handler(event, context):
     # sns = boto3.client('sns')
 
     # # SNS Topic ARN to which the user will be subscribed
-    # topic_arn = 'arn:aws:sns:your_region:your_account_id:your_topic_name'
+    # topic_arn = 'arn:aws:sns:us-east-1:760360511766:leaderboard_notifier'
 
     # try:
+
+    #     # Publish a welcome message to the SNS topic
+    #     sns.publish(
+    #         TopicArn=topic_arn,
+    #         Message=f'Someone has just entered the leaderboard, jump back in now to secure your position!',
+    #         Subject='Herd Mentality Leaderboard'
+    #     )
+    
     #     # Subscribe the user to the SNS topic
     #     response = sns.subscribe(
     #         Protocol='email',
@@ -33,23 +41,13 @@ def lambda_handler(event, context):
     #         Endpoint=email
     #     )
 
-    #     # Publish a welcome message to the SNS topic
-    #     sns.publish(
-    #         TopicArn=topic_arn,
-    #         Message=f'Welcome, {email}! You are now subscribed to our notifications.',
-    #         Subject='Subscription Confirmation'
-    #     )
-
     #     # Response when subscription and message publication are successful
-    #     response = {
-    #         'statusCode': 200,
-    #         'body': json.dumps({'message': 'Subscription successful and message published'})
-    #     }
+    #     res['statusCode'] = 200
+    #     res['body'] = json.dumps({'message': 'Subscription successful and message published'})
+    
     # except Exception as e:
     #     # Response when subscription or message publication fails
-    #     response = {
-    #         'statusCode': 500,
-    #         'body': json.dumps({'message': 'Subscription or message publication failed', 'error': str(e)})
-    #     }
+    #     res['statusCode'] = 500
+    #     res['body'] = json.dumps({'message': 'Subscription or message publication failed', 'error': str(e)})
 
     return res
