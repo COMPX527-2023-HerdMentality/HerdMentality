@@ -18,13 +18,7 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-//Check if current score is new high score
-  
-
-
-
+<script setup lang="ts">
 // const topicArn = 'arn:aws:sns:us-east-1:760360511766:leaderboard_notifier';
 // const message = 'Someone has just entered the leaderboard, jump back in now to secure your position!';
 
@@ -42,15 +36,28 @@
 //   }
 // });
 
-export default {
-  data() {
-    return {
-      score: 0,
-      highScore: 0
-    }
-  },
-  methods: {}
-}
+const score = 0
+const highScore = 0
+
+import { Auth } from 'aws-amplify'
+import { useRoute } from 'vue-router'
+import { onMounted } from 'vue'
+
+const route = useRoute()
+
+onMounted(async () => {
+  console.log(route)
+  const user = await Auth.currentAuthenticatedUser()
+  if (user) {
+    fetch('https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/leaderboard', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + user.signInUserSession.accessToken.jwtToken
+      },
+      body: JSON.stringify({ score: route.params.score })
+    })
+  }
+})
 </script>
 
 <style>
