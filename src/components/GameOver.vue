@@ -54,7 +54,7 @@ onMounted(async () => {
       headers: {
         Authorization: 'Bearer ' + user.signInUserSession.accessToken.jwtToken
       },
-      body: JSON.stringify({ score: route.params.score })
+      body: JSON.stringify({ score: Number(route.params.score) })
     })
   }
 })

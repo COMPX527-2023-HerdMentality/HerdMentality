@@ -30,7 +30,7 @@ var score4 = ref(0)
 var score5 = ref(0)
 var highScore = 0
 
-fetch('https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/leaderboard').then((res) => {
+fetch('https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/leaderboard').then((res) => {
   res.json().then((data) => {
     console.log(data)
     score1.value = data[0]['Score']
