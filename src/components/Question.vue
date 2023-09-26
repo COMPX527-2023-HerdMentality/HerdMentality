@@ -52,6 +52,9 @@ function handleImageClick(imageNumber: Number) {
     return
   }
 
+  console.log("Votes 1: " + questions[question_counter]['Votes1']);
+  console.log("Votes 2: " + questions[question_counter]['Votes2']);
+
   var total_votes =
     parseInt(questions[question_counter]['Votes1']) +
     parseInt(questions[question_counter]['Votes2'])
@@ -76,8 +79,9 @@ function handleImageClick(imageNumber: Number) {
   document.getElementById('right_transition_div')?.classList.remove('transition_inactive')
 
   if (imageNumber == 1) {
-    postAnswer(1)
-    if (questions[question_counter]['Votes1'] >= questions[question_counter]['Votes2']) {
+    postAnswer(1);
+    console.log("Left Correct");
+    if (parseInt(questions[question_counter]['Votes1']) >= parseInt(questions[question_counter]['Votes2'])) {
       //Load in next question and increment score
       question_counter++
 
@@ -103,8 +107,9 @@ function handleImageClick(imageNumber: Number) {
       document.getElementById('right_transition_div')?.classList.add('transition_correct')
     }
   } else {
-    postAnswer(2)
-    if (questions[question_counter]['Votes2'] >= questions[question_counter]['Votes1']) {
+    postAnswer(2);
+    if (parseInt(questions[question_counter]['Votes2']) >= parseInt(questions[question_counter]['Votes1'])) {
+      console.log("Right Correct");
       //Load in next question and increment score
       question_counter++
 
@@ -117,6 +122,7 @@ function handleImageClick(imageNumber: Number) {
       document.getElementById('left_transition_div')?.classList.add('transition_incorrect')
       document.getElementById('right_transition_div')?.classList.add('transition_correct')
     } else {
+      console.log("Right Incorrect");
       //Go to gameover screen, passing the final score
       //document.getElementById("right_image")?.classList.add("container-transition-wrong");
       document.getElementById('right_transition_div')?.classList.add('transition_incorrect')
@@ -382,7 +388,7 @@ function postAnswer(vote: number): void {
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
-    width: 50vh;
+    width: 100vw;
     background-color: rgba(0, 0, 0, 1);
   }
 
@@ -433,11 +439,11 @@ function postAnswer(vote: number): void {
     z-index: 1; /* Ensure the header appears in front of the images */
     position: absolute; /* Position the header absolutely within the .Myapp container */
     text-align: center;
-    top: 94%; /* Center vertically */
-    left: 76%; /* Center horizontally */
+    top: 92%; /* Center vertically */
+    left: 80%; /* Center horizontally */
     transform: translate(-50%, -50%); /*Center the header perfectly*/
     font-family: sheepFont;
-    font-size: 26pt;
+    font-size: 16pt;
   }
 }
 </style>
