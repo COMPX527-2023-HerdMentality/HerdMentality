@@ -56,26 +56,26 @@ def handler(event, context):
     
     # If the request is a POST then extract the body with the new score and update the leaderboard
     elif event['httpMethod'] == 'POST':
-        # Parse the request body JSON
         try:
+            print(event['body'])
             request_body = json.loads(event['body'])
-            name = request_body['name']
+            print(request_body)
+            name = event['requestContext']['authorizer']['claims']['username']
             score = request_body['score']
-        # Account for bad data format 
-        except KeyError:
-            res['statusCode'] = 400,
-            res['body'] = json.dumps('Invalid request body format')
         
-        # Add the new entry to the leaderboard
-        leaderboard_table.put_item(
-            Item={
-                'UserID': name, 
-                'Score': score
-            }
-        )
+            # Add the new entry to the leaderboard
+            leaderboard_table.put_item(
+                Item={
+                    'UserID': name,
+                    'Score': score
+                }
+            )
         
-        res['statusCode'] = 201
-        res['body'] = json.dumps('New entry added to the leaderboard')
+            res['statusCode'] = 201
+            res['body'] = json.dumps('New entry added to the leaderboard')
+        except:
+            res['body'] = "No body in request"
 	
 	# return the created response
     return res
+
