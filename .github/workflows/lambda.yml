@@ -33,4 +33,8 @@ jobs:
         run: |
           zip -j deploy.zip ./lambdas/leaderboard/*
           aws lambda update-function-code --function-name=leaderboard --zip-file=fileb://deploy.zip
+      - name: Update the notify function code    
+        run: |
+          zip -j deploy.zip ./lambdas/notify/*
+          aws lambda update-function-code --function-name=notify --zip-file=fileb://deploy.zip
       
