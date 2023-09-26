@@ -17,13 +17,12 @@ async function login() {
 }
 
 onMounted(async () => {
-  try{
+  try {
     const currentUser = await Auth.currentAuthenticatedUser()
     console.log(currentUser)
-  }
-  catch{
-    router.push({ name: 'login'})
-    console.log("no user")
+  } catch {
+    router.push({ name: 'login' })
+    console.log('no user')
   }
 })
 </script>

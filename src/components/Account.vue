@@ -16,16 +16,15 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
 import { Auth } from 'aws-amplify'
 
 async function signOut() {
   try {
     console.log()
-    await Auth.signOut();
+    await Auth.signOut()
   } catch (error) {
-    console.log('error signing out: ', error);
+    console.log('error signing out: ', error)
   }
 }
 
