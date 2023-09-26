@@ -25,9 +25,9 @@ async function login() {
 }
 
 onMounted(async () => {
-  const currentUser = await Auth.currentAuthenticatedUser();
+  const currentUser = await Auth.currentAuthenticatedUser()
   if (currentUser) {
-    router.push('/');
+    router.push('/')
   }
 })
 </script>
