@@ -20,6 +20,11 @@
 </template>
 
 <script lang="ts">
+//Check if current score is new high score
+  
+
+
+
 // const topicArn = 'arn:aws:sns:us-east-1:760360511766:leaderboard_notifier';
 // const message = 'Someone has just entered the leaderboard, jump back in now to secure your position!';
 

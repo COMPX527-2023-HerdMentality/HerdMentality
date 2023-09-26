@@ -1,8 +1,9 @@
 <template>
   <div class="Myapp_account">
     <h1 class="header_account">Account</h1>
-
-    <input id="signout_account" type="button" value="Sign Out" />
+    <a @click="signOut" href="#">
+      <input id="signout_account" type="button" value="Sign Out" />
+    </a>
     <input id="delete_account" type="button" value="Delete Account" />
     <router-link to="/"><input id="back_account" type="button" value="Back" /></router-link>
 
@@ -14,6 +15,29 @@
     </div>
   </div>
 </template>
+
+
+<script setup lang="ts">
+import { Auth } from 'aws-amplify'
+
+async function signOut() {
+  try {
+    console.log()
+    await Auth.signOut();
+  } catch (error) {
+    console.log('error signing out: ', error);
+  }
+}
+
+// async function deleteUser() {
+//   try {
+//     const result = await Auth.deleteUser();
+//     console.log(result);
+//   } catch (error) {
+//     console.log('Error deleting user', error);
+//   }
+// }
+</script>
 
 /* Center the header text vertically and horizontally */
 <style>
