@@ -26,7 +26,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-
+const QUESTIONS_API = 'https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/questions'
 //Preloading images setup
 let temp1 = ref('')
 let temp2 = ref('')
@@ -138,9 +138,7 @@ function handleImageClick(imageNumber: Number) {
 }
 
 async function getQuestions() {
-  let response = await fetch(
-    'https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/questions'
-  )
+  let response = await fetch(QUESTIONS_API)
   questions = await response.json()
   image1Src.value = questions[question_counter]['Image1']
   image2Src.value = questions[question_counter]['Image2']
@@ -233,7 +231,7 @@ function updateQuestion() {
 }
 
 function postAnswer(vote: number): void {
-  fetch('https://unh4y7n697.execute-api.us-east-1.amazonaws.com/prod/questions', {
+  fetch(QUESTIONS_API, {
     method: 'POST',
     body: JSON.stringify({
       question_id: questions[question_counter]['ID'],
