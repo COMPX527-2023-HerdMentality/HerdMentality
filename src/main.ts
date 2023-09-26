@@ -3,14 +3,13 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import { Amplify, Auth } from 'aws-amplify';
+import { Amplify, Auth } from 'aws-amplify'
 
 const app = createApp(App)
 
 app.use(router)
 
 app.mount('#app')
-
 
 Amplify.configure({
   Auth: {
@@ -65,20 +64,13 @@ Amplify.configure({
     // OPTIONAL - Hosted UI configuration
     oauth: {
       domain: 'herdmentality.auth.us-east-1.amazoncognito.com',
-      scope: [
-        'phone',
-        'email',
-        'profile',
-        'openid',
-        'aws.cognito.signin.user.admin',
-      ],
+      scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
       redirectSignIn: 'http://localhost:5173/login',
       //redirectSignOut: 'http://localhost:3000/',
-      responseType: 'code', // or 'token', note that REFRESH token will only be generated when the responseType is code
-    },
-  },
-});
-
+      responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
+    }
+  }
+})
 
 // You can get the current config object
-const currentConfig = Auth.configure();
+const currentConfig = Auth.configure()
