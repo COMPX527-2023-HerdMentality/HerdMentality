@@ -42,6 +42,7 @@ def handler(event, context):
         
         # Get all items and sort them by score in descending order
         items = response['Items']
+        print(items)
         items.sort(key=lambda x: x['Score'], reverse=True)
 
         # Convert Decimal values to float for JSON serialization
@@ -57,25 +58,39 @@ def handler(event, context):
     # If the request is a POST then extract the body with the new score and update the leaderboard
     elif event['httpMethod'] == 'POST':
         try:
-            print(event['body'])
             request_body = json.loads(event['body'])
-            print(request_body)
             name = event['requestContext']['authorizer']['claims']['username']
             score = request_body['score']
-        
-            # Add the new entry to the leaderboard
-            leaderboard_table.put_item(
-                Item={
-                    'UserID': name,
-                    'Score': score
-                }
-            )
-        
-            res['statusCode'] = 201
-            res['body'] = json.dumps('New entry added to the leaderboard')
+            currentHighScore = 0
+            
+            # Get the current highscore
+            try:
+                response = leaderboard_table.get_item(Key={'UserID': name})
+                currentHighScore = response['Item']['Score']
+                
+                if currentHighScore < score:
+                    # Add the new entry to the leaderboard
+                    leaderboard_table.put_item(
+                        Item={
+                            'UserID': name,
+                            'Score': score
+                        }
+                    )
+            
+                    res['statusCode'] = 201
+                    res['body'] = json.dumps('New entry added to the leaderboard')
+                else:
+                    print("Not a new high score")
+                    res['body'] = json.dumps("Score is not a high score")
+                    return res
+                
+            except ClientError as err:
+                print(err.response['Error']['Message'])
+                
         except:
-            res['body'] = "No body in request"
+            res['body'] = json.dumps("No body in request")
 	
 	# return the created response
     return res
+
 
