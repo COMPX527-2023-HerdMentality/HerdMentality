@@ -2,8 +2,8 @@
   <div class="Myapp_signup">
     <h1 class="header_signup">Herd Mentality</h1>
     <h2 class="signup_label">Create Username:</h2>
-    <form>
-      <input type="text" id="signup_username_box" />
+    <form @submit.prevent="postUsername">
+      <input type="text" id="signup_username_box" ref="usernameInput" />
       <input type="submit" value="Continue" id="signup_username_submit" />
     </form>
     <div class="image-container_signup">
@@ -17,13 +17,51 @@
 <script setup lang="ts">
 import { Auth } from 'aws-amplify'
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth'
-import { onMounted } from 'vue'
+import { onMounted, toValue } from 'vue'
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'; 
+
+const usernameInput = ref('');
+
+const LEADERBOARD_API = 'https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/leaderboard'
 
 const router = useRouter()
 
 async function login() {
   Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })
+}
+
+async function postUsername() {
+  try {
+
+    const currentUser = await Auth.currentAuthenticatedUser();
+
+    var userNameValue = document.querySelector("#signup_username_box") as HTMLInputElement | null;
+
+    var userName = userNameValue?.value;
+    
+
+    if (currentUser) {
+
+        console.log(usernameInput.value);
+
+        let response = await fetch(LEADERBOARD_API, {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + currentUser.signInUserSession.accessToken.jwtToken
+            },
+            body: JSON.stringify({ score: Number(0), username: userName})
+        })
+
+        debugger
+    }
+
+    // Handle the response from the Lambda function here
+  } catch (error) {
+    // Handle any errors that occur during the request
+    console.error('Error sending POST request to Lambda:', error);
+  }
+  router.push('/');
 }
 
 onMounted(async () => {
