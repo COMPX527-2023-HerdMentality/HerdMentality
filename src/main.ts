@@ -11,6 +11,8 @@ app.use(router)
 
 app.mount('#app')
 
+const redirectURL = window.location.origin + window.location.path
+
 Amplify.configure({
   Auth: {
     // REQUIRED only for Federated Authentication - Amazon Cognito Identity Pool ID
@@ -65,7 +67,7 @@ Amplify.configure({
     oauth: {
       domain: 'herdmentality.auth.us-east-1.amazoncognito.com',
       scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-      redirectSignIn: 'http://localhost:5173/login',
+      redirectSignIn: redirectURL,
       //redirectSignOut: 'http://localhost:3000/',
       responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
     }
