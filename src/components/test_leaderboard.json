@@ -1,1 +1,7 @@
-[{"UserId": "BraedanK", "Score": 4.0}, {"UserId": "JohnSnow", "Score": 4.0}, {"UserId": "brogan.wilding", "Score": 2.0}, {"UserId": "brogan.wilding", "Score": 2.0}, {"UserId": "brogan.wilding", "Score": 2.0}]
+[
+  { "UserId": "BraedanK", "Score": 4.0 },
+  { "UserId": "JohnSnow", "Score": 4.0 },
+  { "UserId": "brogan.wilding", "Score": 2.0 },
+  { "UserId": "brogan.wilding", "Score": 2.0 },
+  { "UserId": "brogan.wilding", "Score": 2.0 }
+]
