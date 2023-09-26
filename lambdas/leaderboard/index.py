@@ -20,22 +20,22 @@ res = {
 }
 
 def handler(event, context):
- 
     # If we are getting the leaderboard with just /leaderboard and no body
     if event['httpMethod'] == 'GET':
-        # Use the query operation to retrieve the top 10 scores in descending order
-        # response = leaderboard_table.query(
-        #     IndexName='UserID', 
-        #     KeyConditionExpression=Key('Score').gte(0),
-        #     ScanIndexForward=False,  # Sort in descending order
-        #     Limit=10  # Limit the result to the top 10 scores
-        # )
         
-        # # Append each user's data to the leaderboard list
-        # for item in response['Items']:
-        #     user_id = item['UserId']
-        #     score = item['Score']  # Replace with your score attribute name
-        #     leaderboard.append({'UserId': user_id, 'Score': score})
+        if ('queryStringParameters' in event) and ('user_id' in event['queryStringParameters']):
+            userId = event['queryStringParameters']['user_id']
+            print(userId)
+            response = leaderboard_table.get_item(Key={'UserID': userId})
+            print(response)
+            if not 'Item' in response:
+                data = {'Score':-1}
+                res['body'] = json.dumps(data)
+                return res
+            currentHighScore = response['Item']['Score']
+            data = {'Score': float(currentHighScore)}
+            res['body'] = json.dumps(data)
+            return res
 
         # Use the scan operation to retrieve all items in the table
         response = leaderboard_table.scan()
@@ -66,7 +66,9 @@ def handler(event, context):
             # Get the current highscore
             try:
                 response = leaderboard_table.get_item(Key={'UserID': name})
-                currentHighScore = response['Item']['Score']
+                currentHighScore = -1
+                if 'Item' in response:
+                    currentHighScore = response['Item']['Score']
                 
                 if currentHighScore < score:
                     # Add the new entry to the leaderboard
