@@ -68,7 +68,7 @@ Amplify.configure({
       domain: 'herdmentality.auth.us-east-1.amazoncognito.com',
       scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
       redirectSignIn: redirectURL,
-      //redirectSignOut: 'http://localhost:3000/',
+      redirectSignOut: redirectURL,
       responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
     }
   }
