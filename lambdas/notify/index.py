@@ -11,7 +11,7 @@ res = {
 	},
 }
 
-def lambda_handler(event, context):
+def handler(event, context):
     # Parse the email address from the POST request body
     request_body = json.loads(event['body'])
     email = request_body.get('email')
