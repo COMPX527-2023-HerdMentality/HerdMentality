@@ -27,7 +27,7 @@ async function login() {
 onMounted(async () => {
   const currentUser = await Auth.currentAuthenticatedUser()
   if (currentUser) {
-    router.push('/play')
+    router.push('/')
   }
 })
 </script>
