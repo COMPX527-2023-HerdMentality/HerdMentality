@@ -28,9 +28,9 @@ async function login() {
 
 onMounted(async () => {
   const currentUser = await Auth.currentAuthenticatedUser()
-  console.log(currentUser);
+  console.log(currentUser)
   if (currentUser) {
-    let response = await fetch(LEADERBOARD_API + "?user_id=" + currentUser.username, {
+    let response = await fetch(LEADERBOARD_API + '?user_id=' + currentUser.username, {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + currentUser.signInUserSession.accessToken.jwtToken
@@ -39,19 +39,16 @@ onMounted(async () => {
 
     debugger
 
-    var score = await response.json();
-    score = parseInt(score['Score']);
+    var score = await response.json()
+    score = parseInt(score['Score'])
 
-    console.log("score: " + score);
+    console.log('score: ' + score)
 
-    if (score != -1)
-    {
-      router.push('/');
+    if (score != -1) {
+      router.push('/')
+    } else {
+      router.push('/signup')
     }
-    else{
-      router.push('/signup');
-    }
-    
   }
 })
 </script>
