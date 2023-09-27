@@ -2,7 +2,9 @@
   <div id="leaderboard-container">
     <div id="leaderboard">
       <h1 class="title">Leaderboard</h1>
-      <p class="leaderboard-item" v-for="score in scores">{{score.username}}: {{ score.score }}</p>
+      <p class="leaderboard-item" v-for="score in scores">
+        {{ score.username }}: {{ score.score }}
+      </p>
       <router-link class="button" to="/play"><button>Play again</button></router-link>
       <router-link class="button" to="/"><button>Back</button></router-link>
     </div>
@@ -15,20 +17,21 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 
-const arr:any = [];
-
+const arr: any = []
 
 let scores = reactive(arr)
 
 var highScore = 0
 
-
-
 fetch('https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/leaderboard').then((res) => {
   res.json().then((data) => {
-    console.log(data)
-    data.forEach((item:any) => {
-      scores.push({score: item.Score, username: item.Username})
+    let count = 0
+    data.forEach((item: any) => {
+      if (count == 5) {
+        return
+      }
+      scores.push({ score: item.Score, username: item.Username })
+      count++
     })
   })
 })
@@ -41,20 +44,20 @@ fetch('https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/leaderboard')
 }
 
 * {
-  font-family: sheepFont
+  font-family: sheepFont;
 }
 
 #title {
-  display:flex;
+  display: flex;
 }
 
 button {
-  display:block;
+  display: block;
   margin: auto;
   margin-top: 2rem;
   background: none;
-  color:#c3c2bf;
-  border:none;
+  color: #c3c2bf;
+  border: none;
 }
 
 button:hover {
@@ -71,7 +74,7 @@ button:hover {
 }
 
 #background-image-container {
-  position: absolute;
+  position: fixed;
   z-index: 0;
   top: 0px;
   left: 0px;
@@ -84,25 +87,17 @@ button:hover {
   background-image: url(../assets/images/leaderboard.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size:cover;
+  background-size: cover;
   background-position: center;
   opacity: 0.5;
-}
-
-#background-image-container {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0px;
-  left: 0px;
 }
 
 h1 {
   font-size: 10em;
 }
 
-p, button {
+p,
+button {
   font-size: 5em;
 }
-
 </style>
