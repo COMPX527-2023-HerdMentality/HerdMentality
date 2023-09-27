@@ -100,4 +100,23 @@ p,
 button {
   font-size: 5em;
 }
+
+button{
+  transition: color 0.5s;
+  color: #a6cbce;
+}
+
+button:hover{
+  transition: color 0.5s;
+  color: #3fc8d4;
+}
+
+
+.title{
+  color: #a6cbce;
+}
+
+.leaderboard-item{
+  color: #cc998d;
+}
 </style>
