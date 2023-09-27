@@ -406,7 +406,7 @@ function postAnswer(vote: number): void {
     background-color: rgb(146, 33, 33);
   }
 
-  /* Style for each image */
+  Style for each image
   .image_question {
     flex: 1; /*Each image takes up an equal part of the container*/
     text-align: center; /* Center the content horizontally */
