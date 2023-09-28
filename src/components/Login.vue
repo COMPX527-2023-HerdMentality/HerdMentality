@@ -37,8 +37,6 @@ onMounted(async () => {
       }
     })
 
-    debugger
-
     var score = await response.json()
     score = parseInt(score['Score'])
 

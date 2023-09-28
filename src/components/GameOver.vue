@@ -1,7 +1,7 @@
 <template>
   <div class="Myapp_gameover">
     <h1 class="header_gameover">GAME OVER</h1>
-    <h2 class="score_gameover">Score: {{ $route.params.score }}</h2>
+    <h2 class="score_gameover">Score: {{score}}</h2>
     <h2 class="highScore_gameover">High Score: {{ highScore }}</h2>
     <router-link to="/play"
       ><input id="play_gameover" type="button" value="Play Again"
@@ -19,6 +19,9 @@
   </div>
 </template>
 <script setup lang="ts">
+import { Auth } from 'aws-amplify'
+import { useRoute } from 'vue-router'
+import { onMounted,reactive,ref } from 'vue'
 // const topicArn = 'arn:aws:sns:us-east-1:760360511766:leaderboard_notifier';
 // const message = 'Someone has just entered the leaderboard, jump back in now to secure your position!';
 
@@ -36,14 +39,16 @@
 //   }
 // });
 
-const score = 0
-const highScore = 0
+let highScore = ref(0);
+// highScore = 3
 
-import { Auth } from 'aws-amplify'
-import { useRoute } from 'vue-router'
-import { onMounted } from 'vue'
+
 
 const route = useRoute()
+const score = reactive<Number>(Number(window.localStorage.getItem("score")));
+
+
+const LEADERBOARD_API = 'https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/leaderboard'
 
 onMounted(async () => {
   console.log(route)
@@ -54,8 +59,18 @@ onMounted(async () => {
       headers: {
         Authorization: 'Bearer ' + user.signInUserSession.accessToken.jwtToken
       },
-      body: JSON.stringify({ score: Number(route.params.score) })
+      body: JSON.stringify({ score: score})
     })
+
+    let response = await fetch(LEADERBOARD_API + '?user_id=' + user.username, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + user.signInUserSession.accessToken.jwtToken
+      }
+    })
+
+    var highScoreResponse = await response.json()
+    highScore.value = parseInt(highScoreResponse['Score'])
   }
 })
 </script>

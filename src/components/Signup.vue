@@ -80,7 +80,7 @@ onMounted(async () => {
   transform: translate(-50%, -50%); /*Center the header perfectly*/
   z-index: 1; /* Ensure the header appears in front of the images */
   font-family: sheepFont;
-  font-size: 130pt;
+  font-size: 110pt;
   color: #a6cbce;
 }
 

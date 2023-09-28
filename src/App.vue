@@ -10,6 +10,7 @@ import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
+
 const router = useRouter()
 
 async function login() {
