@@ -15,23 +15,30 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
-
+import { reactive, onMounted } from 'vue'
+import { Auth } from 'aws-amplify'
 const arr: any = []
 
 let scores = reactive(arr)
 
 var highScore = 0
 
-fetch('https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/leaderboard').then((res) => {
-  res.json().then((data) => {
-    let count = 0
-    data.forEach((item: any) => {
-      if (count == 5) {
-        return
-      }
-      scores.push({ score: item.Score, username: item.Username })
-      count++
+onMounted(async () => {
+  const user = await Auth.currentAuthenticatedUser()
+  fetch('https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/leaderboard', {
+    headers: {
+      Authorization: 'Bearer ' + user.signInUserSession.accessToken.jwtToken
+    }
+  }).then((res) => {
+    res.json().then((data) => {
+      let count = 0
+      data.forEach((item: any) => {
+        if (count == 5) {
+          return
+        }
+        scores.push({ score: item.Score, username: item.Username })
+        count++
+      })
     })
   })
 })
@@ -101,22 +108,21 @@ button {
   font-size: 5em;
 }
 
-button{
+button {
   transition: color 0.5s;
   color: #a6cbce;
 }
 
-button:hover{
+button:hover {
   transition: color 0.5s;
   color: #3fc8d4;
 }
 
-
-.title{
+.title {
   color: #a6cbce;
 }
 
-.leaderboard-item{
+.leaderboard-item {
   color: #cc998d;
 }
 </style>

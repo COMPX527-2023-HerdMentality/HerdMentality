@@ -103,9 +103,9 @@ function handleImageClick(imageNumber: Number) {
       timeout_active = true
       setTimeout(() => {
         //Pass a parameter as part of the route's URL
-        localStorage.setItem("score", score.value.toString());
+        localStorage.setItem('score', score.value.toString())
 
-        router.push({ name: 'gameover'})
+        router.push({ name: 'gameover' })
       }, 2500)
 
       document.getElementById('left_transition_div')?.classList.add('transition_incorrect')
@@ -137,9 +137,9 @@ function handleImageClick(imageNumber: Number) {
       timeout_active = true
       setTimeout(() => {
         //Pass a parameter as part of the route's URL
-        localStorage.setItem("score", score.value.toString());
+        localStorage.setItem('score', score.value.toString())
 
-        router.push({ name: 'gameover'})
+        router.push({ name: 'gameover' })
       }, 2500)
       document.getElementById('left_transition_div')?.classList.add('transition_correct')
       document.getElementById('right_transition_div')?.classList.add('transition_incorrect')
@@ -410,8 +410,7 @@ function postAnswer(vote: number): void {
     background-color: rgb(146, 33, 33);
   }
 
-  Style for each image
-  .image_question {
+  Style for each image .image_question {
     flex: 1; /*Each image takes up an equal part of the container*/
     text-align: center; /* Center the content horizontally */
     background-size: cover; /* Scale the background image to cover the entire div */
