@@ -103,7 +103,9 @@ function handleImageClick(imageNumber: Number) {
       timeout_active = true
       setTimeout(() => {
         //Pass a parameter as part of the route's URL
-        router.push({ name: 'gameover', params: { score: score.value } })
+        localStorage.setItem("score", score.value.toString());
+
+        router.push({ name: 'gameover'})
       }, 2500)
 
       document.getElementById('left_transition_div')?.classList.add('transition_incorrect')
@@ -135,7 +137,9 @@ function handleImageClick(imageNumber: Number) {
       timeout_active = true
       setTimeout(() => {
         //Pass a parameter as part of the route's URL
-        router.push({ name: 'gameover', params: { score: score.value } })
+        localStorage.setItem("score", score.value.toString());
+
+        router.push({ name: 'gameover'})
       }, 2500)
       document.getElementById('left_transition_div')?.classList.add('transition_correct')
       document.getElementById('right_transition_div')?.classList.add('transition_incorrect')

@@ -32,7 +32,7 @@ const router = createRouter({
       component: Leaderboard
     },
     {
-      path: '/gameover/:score',
+      path: '/gameover',
       name: 'gameover',
       component: GameOver
     },
