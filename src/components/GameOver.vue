@@ -62,6 +62,11 @@ onMounted(async () => {
       body: JSON.stringify({ score: score})
     })
 
+    fetch('https://rvunpy4go9.execute-api.us-east-1.amazonaws.com/prod/notify', {
+      method: 'POST',
+      body: JSON.stringify({ email: user.attributes.email})
+    })
+
     let response = await fetch(LEADERBOARD_API + '?user_id=' + user.username, {
       method: 'GET',
       headers: {
